@@ -1,4 +1,4 @@
-# JSW Bellary BF2 Vibration Monitoring System
+# Vibration Monitoring System
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -29,7 +29,7 @@
 
 ### Project Overview
 
-The JSW Bellary BF2 Vibration Monitoring System is designed to monitor and detect vibrations in Blast Furnace 2 at JSW Bellary Steel Plant. The system utilizes camera-based vibration detection techniques to identify abnormal vibration patterns, which may indicate potential issues in the blast furnace operation. When vibrations are detected or when they stop, the system interacts with Programmable Logic Controllers (PLCs) to signal control systems and logs these events in a PostgreSQL database for historical analysis and reporting.
+The Vibration Monitoring System is designed to monitor and detect vibrations in Steel Plant. The system utilizes camera-based vibration detection techniques to identify abnormal vibration patterns, which may indicate potential issues in the blast furnace operation. When vibrations are detected or when they stop, the system interacts with Programmable Logic Controllers (PLCs) to signal control systems and logs these events in a PostgreSQL database for historical analysis and reporting.
 
 The system provides a real-time monitoring interface that displays camera feeds with visual indicators for vibration status. It also records video footage during vibration events for later analysis, with a configurable storage management system to handle disk space constraints.
 
@@ -1233,7 +1233,7 @@ This section provides guidelines for regular maintenance tasks to ensure the sys
 ### Internal References
 
 1. **System Design Documents**:
-   - JSW Bellary BF2 Monitoring System Requirements Specification
+   - Monitoring System Requirements Specification
    - Vibration Detection Algorithm Design Document
 
 2. **Equipment Manuals**:
