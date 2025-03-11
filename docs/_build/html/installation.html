@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; Vibration Monitoring System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="Vibration Monitoring System" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Vibration Monitoring System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Vibration Monitoring System</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-requirements">Software Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-process">Installation Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-preparation">1. System Preparation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operating-system-setup">1.1 Operating System Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-postgresql">1.2 Install PostgreSQL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-python-and-setup-virtual-environment">1.3 Install Python and Setup Virtual Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application-installation">2. Application Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-the-application-code">2.1 Get the Application Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-dependencies">2.2 Install Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">3. Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#camera-configuration">3.1 Camera Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#system-configuration">3.2 System Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#region-of-interest-roi-configuration">3.3 Region of Interest (ROI) Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#storage-configuration">3.4 Storage Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plc-configuration">3.5 PLC Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database-setup">4. Database Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-verification">5. System Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-application">6. Running the Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-batch-file">6.1 Using the Batch File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manual-start">6.2 Manual Start</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-installation-issues">Troubleshooting Installation Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#camera-connection-issues">Camera Connection Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plc-connection-issues">PLC Connection Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database-connection-issues">Database Connection Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-environment-issues">Python Environment Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storage-issues">Storage Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrading-the-system">Upgrading the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Full Project Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="project_details.html">Vibration Monitoring System</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Vibration Monitoring System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<p>This section provides detailed instructions for installing and configuring the Vibration Monitoring System.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<section id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Server/Computer System</strong>:</p></li>
+<li><p>Processor: Intel Core i7 or equivalent (8+ cores recommended)</p></li>
+<li><p>RAM: Minimum 16GB (32GB recommended)</p></li>
+<li><p>Storage: 500GB SSD (for operating system and application)</p></li>
+<li><p>Additional storage: 2TB+ for video recordings storage</p></li>
+<li><p>Network: Gigabit Ethernet connection</p></li>
+<li><p><strong>Camera System</strong>:</p></li>
+<li><p>Network cameras with RTSP support</p></li>
+<li><p>Minimum resolution: 1920x1080 (Full HD)</p></li>
+<li><p>Frame rate: 30fps minimum</p></li>
+<li><p>Multiple camera mounting points with clear view of monitoring areas</p></li>
+<li><p>Ethernet connectivity to server</p></li>
+<li><p><strong>PLC System</strong>:</p></li>
+<li><p>Compatible Modbus ASCII PLC</p></li>
+<li><p>Serial connection capability (COM port)</p></li>
+<li><p>Available register addresses for integration</p></li>
+<li><p><strong>Network Infrastructure</strong>:</p></li>
+<li><p>Gigabit network switches</p></li>
+<li><p>Stable network connection between cameras and server</p></li>
+<li><p>Sufficient bandwidth for multiple camera feeds</p></li>
+</ul>
+</section>
+<section id="software-requirements">
+<h3>Software Requirements<a class="headerlink" href="#software-requirements" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Operating System</strong>:</p></li>
+<li><p>Windows 10 64-bit or Windows Server 2016/2019</p></li>
+<li><p>.NET Framework 4.7.2+</p></li>
+<li><p><strong>Python Environment</strong>:</p></li>
+<li><p>Python 3.8+ (64-bit)</p></li>
+<li><p>Virtual environment management (Anaconda or venv)</p></li>
+<li><p><strong>Database</strong>:</p></li>
+<li><p>PostgreSQL 12.0+</p></li>
+<li><p><strong>Additional Software</strong>:</p></li>
+<li><p>Git (for version control)</p></li>
+<li><p>Visual Studio Code or similar IDE (recommended for code editing)</p></li>
+</ul>
+</section>
+</section>
+<section id="installation-process">
+<h2>Installation Process<a class="headerlink" href="#installation-process" title="Link to this heading"></a></h2>
+<section id="system-preparation">
+<h3>1. System Preparation<a class="headerlink" href="#system-preparation" title="Link to this heading"></a></h3>
+<section id="operating-system-setup">
+<h4>1.1 Operating System Setup<a class="headerlink" href="#operating-system-setup" title="Link to this heading"></a></h4>
+<p>Ensure your system meets all hardware requirements before beginning:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Check system specifications on Windows
+systeminfo | findstr /B /C:”OS Name” /C:”OS Version” /C:”System Type” /C:”Total Physical Memory”</p>
+</section>
+<section id="install-postgresql">
+<h4>1.2 Install PostgreSQL<a class="headerlink" href="#install-postgresql" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Download PostgreSQL installer from <a class="reference external" href="https://www.postgresql.org/download/windows/">https://www.postgresql.org/download/windows/</a></p></li>
+<li><p>Run the installer and follow the setup wizard</p></li>
+<li><p>Installation configuration:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Use default installation directory</p></li>
+<li><p>Set password for ‘postgres’ user to ‘root’</p></li>
+<li><p>Keep default port (5432)</p></li>
+<li><p>Set locale to ‘English, United States’</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Complete installation with pgAdmin (included in the installer)</p></li>
+<li><p>Verify installation by connecting to the server through pgAdmin</p></li>
+</ol>
+</section>
+<section id="install-python-and-setup-virtual-environment">
+<h4>1.3 Install Python and Setup Virtual Environment<a class="headerlink" href="#install-python-and-setup-virtual-environment" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Download Python 3.8+ from <a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p></li>
+<li><p>During installation, check “Add Python to PATH”</p></li>
+<li><p>Create a virtual environment for the project:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Create a directory for your project
+mkdir -p D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopment
+cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopment</p>
+<p># Create and activate virtual environment
+python -m venv vms
+call vmsScriptsactivate</p>
+<p># Verify Python version
+python –version</p>
+</section>
+</section>
+<section id="application-installation">
+<h3>2. Application Installation<a class="headerlink" href="#application-installation" title="Link to this heading"></a></h3>
+<section id="get-the-application-code">
+<h4>2.1 Get the Application Code<a class="headerlink" href="#get-the-application-code" title="Link to this heading"></a></h4>
+<p>Option 1: Clone from Git repository (if available):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Navigate to Development directory
+cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopment</p>
+<p># Clone the repository
+git clone <a class="reference external" href="https://your-repository-url.git">https://your-repository-url.git</a> VMS_BF2_07_12_2024</p>
+<p># Enter project directory
+cd VMS_BF2_07_12_2024</p>
+<p>Option 2: Manual installation:</p>
+<ol class="arabic simple">
+<li><p>Create the application directory structure:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Create application directory
+mkdir -p D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentVMS_BF2_07_12_2024
+cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentVMS_BF2_07_12_2024</p>
+<p># Create subdirectories
+mkdir data logs resultsvideos PLC_Related Recorder_PC</p>
+<ol class="arabic simple" start="2">
+<li><p>Copy application files (app.py, cam.py, plc.py, database.py, etc.) to the application directory</p></li>
+</ol>
+</section>
+<section id="install-dependencies">
+<h4>2.2 Install Dependencies<a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h4>
+<p>Install required Python packages using the requirements.txt file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Activate virtual environment if not already activated
+call D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentvmsScriptsactivate</p>
+<p># Install dependencies
+pip install -r requirements.txt</p>
+<p># Verify installations
+pip list</p>
+</section>
+</section>
+<section id="configuration">
+<h3>3. Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h3>
+<section id="camera-configuration">
+<h4>3.1 Camera Configuration<a class="headerlink" href="#camera-configuration" title="Link to this heading"></a></h4>
+<p>Create or edit the camera configuration file:</p>
+<ol class="arabic simple">
+<li><p>Navigate to the data directory:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentVMS_BF2_07_12_2024data</p>
+<ol class="arabic simple" start="2">
+<li><p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">cameras.json</span></code> file with the following format:</p></li>
+</ol>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>{
+“camera_serial_number_1”: “<a class="reference external" href="rtsp://username:password&#64;camera-ip-address:port/stream">rtsp://username:password&#64;camera-ip-address:port/stream</a>”,
+“camera_serial_number_2”: “<a class="reference external" href="rtsp://username:password&#64;camera-ip-address:port/stream">rtsp://username:password&#64;camera-ip-address:port/stream</a>”
+}</p>
+<p>Replace <code class="xref py py-obj docutils literal notranslate"><span class="pre">camera_serial_number_X</span></code> with your actual camera identifiers and update the RTSP URLs with your camera credentials and IP addresses.</p>
+</section>
+<section id="system-configuration">
+<h4>3.2 System Configuration<a class="headerlink" href="#system-configuration" title="Link to this heading"></a></h4>
+<p>Create or edit the main configuration file:</p>
+<ol class="arabic simple">
+<li><p>Navigate to the data directory:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentVMS_BF2_07_12_2024data</p>
+<ol class="arabic simple" start="2">
+<li><p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">config.json</span></code> file with the following format:</p></li>
+</ol>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>{
+“mes_score”: 50,
+“fps”: 20,
+“video_duration”: 180,
+“stable_threshold”: 5,
+“motion_blur”: true
+}</p>
+<p>Adjust these values according to your requirements:</p>
+<ul class="simple">
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mes_score</span></code>: Motion energy score threshold (default: 50)</p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fps</span></code>: Processing frames per second (default: 20)</p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">video_duration</span></code>: Video recording duration in seconds (default: 180)</p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stable_threshold</span></code>: Time in seconds to determine stability (default: 5)</p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">motion_blur</span></code>: Enable/disable motion blur detection (default: true)</p></li>
+</ul>
+</section>
+<section id="region-of-interest-roi-configuration">
+<h4>3.3 Region of Interest (ROI) Configuration<a class="headerlink" href="#region-of-interest-roi-configuration" title="Link to this heading"></a></h4>
+<p>Create or edit the ROI configuration file:</p>
+<ol class="arabic simple">
+<li><p>Navigate to the data directory:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentVMS_BF2_07_12_2024data</p>
+<ol class="arabic simple" start="2">
+<li><p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">roi.json</span></code> file with the following format:</p></li>
+</ol>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>{
+“x”: 100,
+“y”: 100,
+“width”: 500,
+“height”: 300
+}</p>
+<p>Adjust these values to define the region in the camera frame where vibration will be monitored.</p>
+</section>
+<section id="storage-configuration">
+<h4>3.4 Storage Configuration<a class="headerlink" href="#storage-configuration" title="Link to this heading"></a></h4>
+<p>Create or edit the storage limit configuration file:</p>
+<ol class="arabic simple">
+<li><p>Navigate to the data directory:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentVMS_BF2_07_12_2024data</p>
+<ol class="arabic simple" start="2">
+<li><p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">storage_limit.json</span></code> file with the following format:</p></li>
+</ol>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>{
+“storage_limit”: 30
+}</p>
+<p>This defines the storage limit in GB for video recordings (default: 30GB).</p>
+</section>
+<section id="plc-configuration">
+<h4>3.5 PLC Configuration<a class="headerlink" href="#plc-configuration" title="Link to this heading"></a></h4>
+<p>The PLC connection parameters are defined in the plc.py file:</p>
+<ul class="simple">
+<li><p>Port: COM7 (default)</p></li>
+<li><p>Baud rate: 9600</p></li>
+<li><p>Parity: Even</p></li>
+<li><p>Stop bits: 1</p></li>
+<li><p>Data bits: 7</p></li>
+<li><p>Protocol: Modbus ASCII</p></li>
+</ul>
+<p>If you need to modify these settings, edit the relevant sections in the plc.py file.</p>
+</section>
+</section>
+<section id="database-setup">
+<h3>4. Database Setup<a class="headerlink" href="#database-setup" title="Link to this heading"></a></h3>
+<p>The system automatically creates the required database and tables on first run. However, you can manually set up the database with the following steps:</p>
+<ol class="arabic simple">
+<li><p>Open pgAdmin</p></li>
+<li><p>Connect to the PostgreSQL server</p></li>
+<li><p>Create a new database named “deevia_vms”</p></li>
+<li><p>Run the following SQL query to create the vibration events table:</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>CREATE TABLE IF NOT EXISTS vms (
+id SERIAL PRIMARY KEY,
+vibration_stopped_date_time TIMESTAMP NOT NULL
+);</p>
+</section>
+<section id="system-verification">
+<h3>5. System Verification<a class="headerlink" href="#system-verification" title="Link to this heading"></a></h3>
+<p>Before running the application, verify all components are properly configured:</p>
+<ol class="arabic simple">
+<li><p>Check PostgreSQL is running:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># On Windows
+sc query postgresql-x64-12</p>
+<ol class="arabic simple" start="2">
+<li><p>Verify camera connectivity:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Test RTSP connection using VLC or similar tool
+# Open network stream with your camera’s RTSP URL</p>
+<ol class="arabic simple" start="3">
+<li><p>Verify PLC connectivity:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ensure the PLC is powered on and accessible</p></li>
+<li><p>Check serial port connection (COM7 by default)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="running-the-application">
+<h3>6. Running the Application<a class="headerlink" href="#running-the-application" title="Link to this heading"></a></h3>
+<section id="using-the-batch-file">
+<h4>6.1 Using the Batch File<a class="headerlink" href="#using-the-batch-file" title="Link to this heading"></a></h4>
+<p>The simplest way to start the application is using the provided batch file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Navigate to application directory
+cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentVMS_BF2_07_12_2024</p>
+<p># Run the application
+run.bat</p>
+</section>
+<section id="manual-start">
+<h4>6.2 Manual Start<a class="headerlink" href="#manual-start" title="Link to this heading"></a></h4>
+<p>Alternatively, you can start the application manually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Navigate to application directory
+cd D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentVMS_BF2_07_12_2024</p>
+<p># Activate virtual environment
+call D:ProjectsJSW_BellaryBF2Vibration_Monitoring_SystemDevelopmentvmsScriptsactivate</p>
+<p># Run the application
+python app.py</p>
+</section>
+</section>
+</section>
+<section id="troubleshooting-installation-issues">
+<h2>Troubleshooting Installation Issues<a class="headerlink" href="#troubleshooting-installation-issues" title="Link to this heading"></a></h2>
+<section id="camera-connection-issues">
+<h3>Camera Connection Issues<a class="headerlink" href="#camera-connection-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Problem</strong>: Cannot connect to cameras</p></li>
+</ul>
+<p><strong>Solution</strong>:
+- Verify camera IP addresses and credentials
+- Check network connectivity between server and cameras
+- Ensure cameras support RTSP protocol
+- Test RTSP URLs with VLC or similar tools</p>
+</section>
+<section id="plc-connection-issues">
+<h3>PLC Connection Issues<a class="headerlink" href="#plc-connection-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Problem</strong>: Cannot communicate with PLC</p></li>
+</ul>
+<p><strong>Solution</strong>:
+- Verify COM port settings
+- Check physical connection between server and PLC
+- Ensure PLC is configured for Modbus ASCII communication
+- Test with a Modbus diagnostic tool</p>
+</section>
+<section id="database-connection-issues">
+<h3>Database Connection Issues<a class="headerlink" href="#database-connection-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Problem</strong>: Application fails to connect to database</p></li>
+</ul>
+<p><strong>Solution</strong>:
+- Verify PostgreSQL service is running
+- Check database credentials (user: postgres, password: root)
+- Ensure PostgreSQL is accessible on localhost:5432
+- Manually test connection with pgAdmin</p>
+</section>
+<section id="python-environment-issues">
+<h3>Python Environment Issues<a class="headerlink" href="#python-environment-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Problem</strong>: Missing dependencies or packages</p></li>
+</ul>
+<p><strong>Solution</strong>:
+- Verify virtual environment is activated
+- Reinstall all dependencies: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code>
+- Check for any error messages during installation
+- Verify Python version (3.8+)</p>
+</section>
+<section id="storage-issues">
+<h3>Storage Issues<a class="headerlink" href="#storage-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Problem</strong>: Running out of disk space</p></li>
+</ul>
+<p><strong>Solution</strong>:
+- Adjust storage_limit.json to a lower value
+- Add additional storage
+- Implement a data retention policy for older recordings</p>
+</section>
+</section>
+<section id="upgrading-the-system">
+<h2>Upgrading the System<a class="headerlink" href="#upgrading-the-system" title="Link to this heading"></a></h2>
+<p>For system upgrades:</p>
+<ol class="arabic simple">
+<li><p>Back up all configuration files</p></li>
+<li><p>Back up the database</p></li>
+<li><p>Update application files</p></li>
+<li><p>Run <code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> to update dependencies</p></li>
+<li><p>Restart the application</p></li>
+</ol>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>After following these installation steps, your Vibration Monitoring System should be successfully installed and configured. If you encounter any issues not covered in the troubleshooting section, please refer to the project documentation or contact the development team.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Vibration Monitoring System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Deevia Software India Pvt Ltd.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

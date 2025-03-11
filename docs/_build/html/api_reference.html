@@ -1,0 +1,920 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; Vibration Monitoring System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting Guide" href="troubleshooting.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Vibration Monitoring System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Vibration Monitoring System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-architecture">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app-py">Module: app.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-videoprocessor">Class: VideoProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#VideoProcessor"><code class="docutils literal notranslate"><span class="pre">VideoProcessor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cam-py">Module: cam.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-camconnect">Class: CamConnect</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#CamConnect"><code class="docutils literal notranslate"><span class="pre">CamConnect</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#class-camerathread">Class: CameraThread</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#CameraThread"><code class="docutils literal notranslate"><span class="pre">CameraThread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-plc-py">Module: plc.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-plc">Class: PLC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PLC"><code class="docutils literal notranslate"><span class="pre">PLC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-database-py">Module: database.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create_db_if_not_exists"><code class="docutils literal notranslate"><span class="pre">create_db_if_not_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create_table_if_not_exists"><code class="docutils literal notranslate"><span class="pre">create_table_if_not_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#store_vibration_stopped_time"><code class="docutils literal notranslate"><span class="pre">store_vibration_stopped_time()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-logging-config-py">Module: logging_config.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup_logger"><code class="docutils literal notranslate"><span class="pre">setup_logger()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-file-verifier-py">Module: file_verifier.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verify_config_files"><code class="docutils literal notranslate"><span class="pre">verify_config_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create_directories"><code class="docutils literal notranslate"><span class="pre">create_directories()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-usage-examples">API Usage Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Full Project Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="project_details.html">Vibration Monitoring System</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Vibration Monitoring System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api_reference.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<p>This section provides detailed information about the code structure, modules, and APIs of the JSW Bellary BF2 Vibration Monitoring System.</p>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#system-architecture" id="id5">System Architecture</a></p></li>
+<li><p><a class="reference internal" href="#module-app-py" id="id6">Module: app.py</a></p>
+<ul>
+<li><p><a class="reference internal" href="#class-videoprocessor" id="id7">Class: VideoProcessor</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#module-cam-py" id="id8">Module: cam.py</a></p>
+<ul>
+<li><p><a class="reference internal" href="#class-camconnect" id="id9">Class: CamConnect</a></p></li>
+<li><p><a class="reference internal" href="#class-camerathread" id="id10">Class: CameraThread</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#module-plc-py" id="id11">Module: plc.py</a></p>
+<ul>
+<li><p><a class="reference internal" href="#class-plc" id="id12">Class: PLC</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#module-database-py" id="id13">Module: database.py</a></p></li>
+<li><p><a class="reference internal" href="#module-logging-config-py" id="id14">Module: logging_config.py</a></p></li>
+<li><p><a class="reference internal" href="#module-file-verifier-py" id="id15">Module: file_verifier.py</a></p></li>
+<li><p><a class="reference internal" href="#api-usage-examples" id="id16">API Usage Examples</a></p></li>
+</ul>
+</nav>
+<section id="system-architecture">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">System Architecture</a><a class="headerlink" href="#system-architecture" title="Link to this heading"></a></h2>
+<p>The Vibration Monitoring System consists of multiple interconnected modules, each responsible for specific functionality:</p>
+</section>
+<section id="module-app-py">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Module: app.py</a><a class="headerlink" href="#module-app-py" title="Link to this heading"></a></h2>
+<p>The main application module that coordinates all components and implements the core vibration detection algorithm.</p>
+<section id="class-videoprocessor">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Class: VideoProcessor</a><a class="headerlink" href="#class-videoprocessor" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="VideoProcessor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VideoProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mes_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">video_duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stable_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_blur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VideoProcessor" title="Link to this definition"></a></dt>
+<dd><p>Main class for processing video frames and detecting vibrations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mes_score</strong> (<em>int</em>) – Threshold for motion energy score to detect vibrations</p></li>
+<li><p><strong>fps</strong> (<em>int</em>) – Frames per second for video processing</p></li>
+<li><p><strong>video_duration</strong> (<em>int</em>) – Duration of recorded video in seconds</p></li>
+<li><p><strong>stable_threshold</strong> (<em>int</em>) – Threshold for determining stability in seconds</p></li>
+<li><p><strong>motion_blur</strong> (<em>bool</em>) – Enable/disable motion blur detection</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="load_storage_limit">
+<span class="sig-name descname"><span class="pre">load_storage_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#load_storage_limit" title="Link to this definition"></a></dt>
+<dd><p>Loads storage limit from configuration file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Storage limit in GB (default: 30GB)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">storage_limit</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">load_storage_limit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Storage limit: </span><span class="si">{</span><span class="n">storage_limit</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="check_storage">
+<span class="sig-name descname"><span class="pre">check_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#check_storage" title="Link to this definition"></a></dt>
+<dd><p>Checks available disk space against the configured limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if sufficient space, False if below limit</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">processor</span><span class="o">.</span><span class="n">check_storage</span><span class="p">():</span>
+    <span class="c1"># Proceed with recording</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Display warning or stop recording</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_roi">
+<span class="sig-name descname"><span class="pre">load_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#load_roi" title="Link to this definition"></a></dt>
+<dd><p>Loads Region of Interest (ROI) configuration from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ROI configuration as dictionary</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">roi</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">load_roi</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">roi</span><span class="p">:</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">roi</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="add_camera">
+<span class="sig-name descname"><span class="pre">add_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cam_serial_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtsp_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#add_camera" title="Link to this definition"></a></dt>
+<dd><p>Adds and initializes a camera connection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cam_serial_num</strong> (<em>str</em>) – Camera serial number identifier</p></li>
+<li><p><strong>rtsp_path</strong> (<em>str</em>) – RTSP URL for camera connection</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">add_camera</span><span class="p">(</span><span class="s2">&quot;CAM001&quot;</span><span class="p">,</span> <span class="s2">&quot;rtsp://192.168.1.100:554/stream&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="create_video_writer">
+<span class="sig-name descname"><span class="pre">create_video_writer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#create_video_writer" title="Link to this definition"></a></dt>
+<dd><p>Creates a video writer object for recording.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output_path</strong> (<em>str</em>) – Path where video will be saved</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>OpenCV VideoWriter object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>cv2.VideoWriter</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">writer</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">create_video_writer</span><span class="p">(</span><span class="s2">&quot;path/to/output.avi&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mse">
+<span class="sig-name descname"><span class="pre">mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mse" title="Link to this definition"></a></dt>
+<dd><p>Calculates Mean Squared Error between two images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_a</strong> (<em>numpy.ndarray</em>) – First image for comparison</p></li>
+<li><p><strong>image_b</strong> (<em>numpy.ndarray</em>) – Second image for comparison</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MSE value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">error</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">mse</span><span class="p">(</span><span class="n">gray_frame1</span><span class="p">,</span> <span class="n">gray_frame2</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Motion detected&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lighting_compensation">
+<span class="sig-name descname"><span class="pre">lighting_compensation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lighting_compensation" title="Link to this definition"></a></dt>
+<dd><p>Applies histogram equalization to compensate for lighting variations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> (<em>numpy.ndarray</em>) – Input BGR image</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Histogram equalized grayscale image</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">compensated</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">lighting_compensation</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="overlay_logo">
+<span class="sig-name descname"><span class="pre">overlay_logo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#overlay_logo" title="Link to this definition"></a></dt>
+<dd><p>Overlays a logo on the frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> (<em>numpy.ndarray</em>) – Target frame to overlay logo on</p></li>
+<li><p><strong>logo</strong> (<em>numpy.ndarray</em>) – Logo image</p></li>
+<li><p><strong>position</strong> (<em>tuple</em>) – Tuple of (x, y) coordinates for logo placement</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Frame with overlaid logo</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame_with_logo</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">overlay_logo</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">logo_img</span><span class="p">,</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="put_title">
+<span class="sig-name descname"><span class="pre">put_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#put_title" title="Link to this definition"></a></dt>
+<dd><p>Adds a title text to the frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> (<em>numpy.ndarray</em>) – Target frame to add title to</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – Text to display as title</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Frame with title</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">put_title</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="s2">&quot;Vibration Monitoring System&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="put_motion_notification">
+<span class="sig-name descname"><span class="pre">put_motion_notification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#put_motion_notification" title="Link to this definition"></a></dt>
+<dd><p>Adds vibration status notification text to the frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> (<em>numpy.ndarray</em>) – Target frame to add notification to</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – Notification text</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Frame with notification</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">put_motion_notification</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="s2">&quot;Vibration Detected!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#show" title="Link to this definition"></a></dt>
+<dd><p>Displays frame in a window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Window name</p></li>
+<li><p><strong>frame</strong> (<em>numpy.ndarray</em>) – Frame to display</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;Camera Feed&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="start_video_recording">
+<span class="sig-name descname"><span class="pre">start_video_recording</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">video_writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#start_video_recording" title="Link to this definition"></a></dt>
+<dd><p>Writes a frame to video recording.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video_writer</strong> (<em>cv2.VideoWriter</em>) – OpenCV VideoWriter object</p></li>
+<li><p><strong>frame_raw</strong> (<em>numpy.ndarray</em>) – Frame to write to video</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">start_video_recording</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="process_frame">
+<span class="sig-name descname"><span class="pre">process_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_gray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#process_frame" title="Link to this definition"></a></dt>
+<dd><p>Core function for processing each frame for vibration detection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_raw</strong> (<em>numpy.ndarray</em>) – Original unprocessed frame</p></li>
+<li><p><strong>logo</strong> (<em>numpy.ndarray</em>) – Logo image to overlay</p></li>
+<li><p><strong>frame_gray</strong> (<em>numpy.ndarray</em>) – Grayscale version of frame</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Processed frame</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processed_frame</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">process_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">logo</span><span class="p">,</span> <span class="n">gray_frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manage_video">
+<span class="sig-name descname"><span class="pre">manage_video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#manage_video" title="Link to this definition"></a></dt>
+<dd><p>Manages video recording file creation and path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current time string in format “HH:MM:SS”</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">current_time</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">manage_video</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#process" title="Link to this definition"></a></dt>
+<dd><p>Main processing loop for the application.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="functions">
+<h4>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h4>
+<dl class="py function">
+<dt class="sig sig-object py" id="load_config">
+<span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#load_config" title="Link to this definition"></a></dt>
+<dd><p>Loads application configuration from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple of (mes_score, fps, video_duration, stable_threshold, motion_blur)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mes_score</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="n">video_duration</span><span class="p">,</span> <span class="n">stable_threshold</span><span class="p">,</span> <span class="n">motion_blur</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+</section>
+<section id="module-cam-py">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Module: cam.py</a><a class="headerlink" href="#module-cam-py" title="Link to this heading"></a></h2>
+<p>This module handles camera connections and frame acquisition.</p>
+<section id="class-camconnect">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Class: CamConnect</a><a class="headerlink" href="#class-camconnect" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="CamConnect">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CamConnect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cam_address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CamConnect" title="Link to this definition"></a></dt>
+<dd><p>Manages connection to a camera via RTSP.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cam_address</strong> (<em>str</em>) – RTSP URL for camera connection</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="id1">
+<h4>Methods<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="grab_frame">
+<span class="sig-name descname"><span class="pre">grab_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grab_frame" title="Link to this definition"></a></dt>
+<dd><p>Thread function to continuously grab frames from camera.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Called internally</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">camera</span><span class="o">.</span><span class="n">grab_frame</span><span class="p">)</span>
+<span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reconnect_camera">
+<span class="sig-name descname"><span class="pre">reconnect_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reconnect_camera" title="Link to this definition"></a></dt>
+<dd><p>Attempts to reconnect to camera after connection loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if reconnection successful, False otherwise</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">camera</span><span class="o">.</span><span class="n">reconnect_camera</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to reconnect to camera&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#read" title="Link to this definition"></a></dt>
+<dd><p>Returns the current frame from camera.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current frame or error image if unavailable</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="release">
+<span class="sig-name descname"><span class="pre">release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#release" title="Link to this definition"></a></dt>
+<dd><p>Releases the camera connection.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="class-camerathread">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Class: CameraThread</a><a class="headerlink" href="#class-camerathread" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="CameraThread">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CameraThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_serial_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtsp_link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_dictionary</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CameraThread" title="Link to this definition"></a></dt>
+<dd><p>Thread class for handling camera operations in parallel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>camera_serial_number</strong> (<em>str</em>) – Serial number identifier for camera</p></li>
+<li><p><strong>rtsp_link</strong> (<em>str</em>) – RTSP URL for camera connection</p></li>
+<li><p><strong>frame_dictionary</strong> (<em>dict</em>) – Shared dictionary to store frames from multiple cameras</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="id2">
+<h4>Methods<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#run" title="Link to this definition"></a></dt>
+<dd><p>Main thread function that continuously captures frames.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Called by starting the thread</span>
+<span class="n">camera_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#stop" title="Link to this definition"></a></dt>
+<dd><p>Stops the thread execution.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">camera_thread</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h4>Functions<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<dl class="py function">
+<dt class="sig sig-object py" id="load_camera_config">
+<span class="sig-name descname"><span class="pre">load_camera_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#load_camera_config" title="Link to this definition"></a></dt>
+<dd><p>Loads camera configuration from data/cameras.json.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary mapping camera serial numbers to RTSP URLs</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">camera_config</span> <span class="o">=</span> <span class="n">load_camera_config</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">serial</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">camera_config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Camera </span><span class="si">{</span><span class="n">serial</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+</section>
+<section id="module-plc-py">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Module: plc.py</a><a class="headerlink" href="#module-plc-py" title="Link to this heading"></a></h2>
+<p>This module handles communication with the Programmable Logic Controller.</p>
+<section id="class-plc">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Class: PLC</a><a class="headerlink" href="#class-plc" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="PLC">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PLC</span></span><a class="headerlink" href="#PLC" title="Link to this definition"></a></dt>
+<dd><p>Manages connection and communication with the PLC.</p>
+</dd></dl>
+
+<section id="id4">
+<h4>Methods<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="convert_ma_to_percentage">
+<span class="sig-name descname"><span class="pre">convert_ma_to_percentage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_ma_to_percentage" title="Link to this definition"></a></dt>
+<dd><p>Converts milliamp readings to percentage (range: -12mA to 20mA → 0% to 100%).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ma</strong> (<em>float</em>) – Current in milliamps</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Percentage value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">percentage</span> <span class="o">=</span> <span class="n">plc</span><span class="o">.</span><span class="n">convert_ma_to_percentage</span><span class="p">(</span><span class="mf">15.5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current percentage: </span><span class="si">{</span><span class="n">percentage</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="connectToPLC">
+<span class="sig-name descname"><span class="pre">connectToPLC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#connectToPLC" title="Link to this definition"></a></dt>
+<dd><p>Establishes connection to PLC via Modbus ASCII protocol on COM7.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if connection established, False otherwise</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">plc</span><span class="o">.</span><span class="n">connectToPLC</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connected to PLC&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to connect to PLC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="read_bit">
+<span class="sig-name descname"><span class="pre">read_bit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#read_bit" title="Link to this definition"></a></dt>
+<dd><p>Reads a value from the specified PLC register.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>address</strong> (<em>int</em>) – Register address</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value read from register</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">plc</span><span class="o">.</span><span class="n">read_bit</span><span class="p">(</span><span class="mi">4106</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Register value: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="write_bit">
+<span class="sig-name descname"><span class="pre">write_bit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#write_bit" title="Link to this definition"></a></dt>
+<dd><p>Writes a value to the specified PLC register.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> (<em>int</em>) – Register address</p></li>
+<li><p><strong>data</strong> (<em>int</em>) – Value to write</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if write successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">success</span> <span class="o">=</span> <span class="n">plc</span><span class="o">.</span><span class="n">write_bit</span><span class="p">(</span><span class="mi">4106</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Value written successfully&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+</section>
+<section id="module-database-py">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Module: database.py</a><a class="headerlink" href="#module-database-py" title="Link to this heading"></a></h2>
+<p>This module handles database operations for storing vibration events.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="create_db_if_not_exists">
+<span class="sig-name descname"><span class="pre">create_db_if_not_exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#create_db_if_not_exists" title="Link to this definition"></a></dt>
+<dd><p>Creates the PostgreSQL database if it doesn’t exist.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create_db_if_not_exists</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="create_table_if_not_exists">
+<span class="sig-name descname"><span class="pre">create_table_if_not_exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#create_table_if_not_exists" title="Link to this definition"></a></dt>
+<dd><p>Creates the “vms” table if it doesn’t exist.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create_table_if_not_exists</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="store_vibration_stopped_time">
+<span class="sig-name descname"><span class="pre">store_vibration_stopped_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store_vibration_stopped_time" title="Link to this definition"></a></dt>
+<dd><p>Records the timestamp when vibration stops.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">store_vibration_stopped_time</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-logging-config-py">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Module: logging_config.py</a><a class="headerlink" href="#module-logging-config-py" title="Link to this heading"></a></h2>
+<p>This module configures the application-wide logging system.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="setup_logger">
+<span class="sig-name descname"><span class="pre">setup_logger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#setup_logger" title="Link to this definition"></a></dt>
+<dd><p>Configures a logger with TimedRotatingFileHandler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Configured logger object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>logging.Logger</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">setup_logger</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Application started&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-file-verifier-py">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Module: file_verifier.py</a><a class="headerlink" href="#module-file-verifier-py" title="Link to this heading"></a></h2>
+<p>This module handles file verification to ensure required files exist.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="verify_config_files">
+<span class="sig-name descname"><span class="pre">verify_config_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#verify_config_files" title="Link to this definition"></a></dt>
+<dd><p>Checks for the existence of all required configuration files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Boolean indicating if all required files are present</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">verify_config_files</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All configuration files found&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing configuration files&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="create_directories">
+<span class="sig-name descname"><span class="pre">create_directories</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#create_directories" title="Link to this definition"></a></dt>
+<dd><p>Creates necessary directories if they don’t exist.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create_directories</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="api-usage-examples">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">API Usage Examples</a><a class="headerlink" href="#api-usage-examples" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize camera system</span>
+<span class="n">camera_config</span> <span class="o">=</span> <span class="n">load_camera_config</span><span class="p">()</span>
+<span class="n">frame_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">camera_threads</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Create camera threads</span>
+<span class="k">for</span> <span class="n">camera_serial</span><span class="p">,</span> <span class="n">rtsp_url</span> <span class="ow">in</span> <span class="n">camera_config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">camera_thread</span> <span class="o">=</span> <span class="n">CameraThread</span><span class="p">(</span><span class="n">camera_serial</span><span class="p">,</span> <span class="n">rtsp_url</span><span class="p">,</span> <span class="n">frame_dict</span><span class="p">)</span>
+    <span class="n">camera_threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">camera_thread</span><span class="p">)</span>
+    <span class="n">camera_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Process frames</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">camera_serial</span> <span class="ow">in</span> <span class="n">camera_config</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Deevia Software India Pvt Ltd.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

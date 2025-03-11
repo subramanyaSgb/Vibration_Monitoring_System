@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibration Monitoring System &mdash; Vibration Monitoring System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Vibration Monitoring System" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Vibration Monitoring System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Vibration Monitoring System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#project-overview">Project Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-architecture">System Architecture</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Full Project Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="project_details.html">Vibration Monitoring System</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Vibration Monitoring System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Vibration Monitoring System</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vibration-monitoring-system">
+<h1>Vibration Monitoring System<a class="headerlink" href="#vibration-monitoring-system" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<section id="project-overview">
+<h3>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading"></a></h3>
+<p>The Vibration Monitoring System is designed to monitor and detect vibrations in Steel Plant. The system utilizes camera-based vibration detection techniques to identify abnormal vibration patterns, which may indicate potential issues in the blast furnace operation. When vibrations are detected or when they stop, the system interacts with Programmable Logic Controllers (PLCs) to signal control systems and logs these events in a PostgreSQL database for historical analysis and reporting.</p>
+<p>The system provides a real-time monitoring interface that displays camera feeds with visual indicators for vibration status. It also records video footage during vibration events for later analysis, with a configurable storage management system to handle disk space constraints.</p>
+</section>
+<section id="benefits">
+<h3>Benefits<a class="headerlink" href="#benefits" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Early Detection</strong>: Identifies vibration anomalies before they lead to critical failures</p></li>
+<li><p><strong>Automated Monitoring</strong>: Continuously monitors blast furnace operations without manual intervention</p></li>
+<li><p><strong>Historical Analysis</strong>: Stores vibration events in a database for trend analysis and reporting</p></li>
+<li><p><strong>Real-time Alerts</strong>: Interfaces with existing PLC systems to trigger appropriate actions when vibrations occur</p></li>
+<li><p><strong>Video Evidence</strong>: Records video footage during vibration events for detailed analysis and troubleshooting</p></li>
+<li><p><strong>Flexible Configuration</strong>: Customizable sensitivity settings and regions of interest</p></li>
+<li><p><strong>Resource Optimization</strong>: Helps prevent unplanned downtime and extends equipment life</p></li>
+</ul>
+</section>
+<section id="system-architecture">
+<h3>System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading"></a></h3>
+<p>The Vibration Monitoring System is built with a modular architecture consisting of the following core components:</p>
+<ol class="arabic">
+<li><p><strong>Camera Monitoring</strong></p>
+<p>Utilizes RTSP camera feeds with OpenCV to capture and process video streams. The system supports multiple cameras simultaneously through multi-threaded processing.</p>
+</li>
+<li><p><strong>Vibration Detection Algorithm</strong></p>
+<p>Analyzes frame-to-frame differences within configured Regions of Interest (ROI) to detect vibration patterns. The algorithm employs Mean Squared Error (MSE) calculations and includes lighting compensation to handle varying environmental conditions.</p>
+</li>
+<li><p><strong>PLC Interface</strong></p>
+<p>Communicates with industrial PLCs via Modbus ASCII protocol to signal control systems. The interface allows bidirectional communication, sending signals when vibrations are detected or when stability returns.</p>
+</li>
+<li><p><strong>Database System</strong></p>
+<p>PostgreSQL database for storing vibration event data, including timestamps of when vibrations stop. This provides a historical record for analysis and reporting.</p>
+</li>
+<li><p><strong>Logging System</strong></p>
+<p>Comprehensive logging with automatic rotation for system monitoring and diagnostics. Logs are organized by date and provide detailed information about system operations and errors.</p>
+</li>
+<li><p><strong>Video Recording</strong></p>
+<p>Automatically captures and organizes video recordings of vibration events. The system includes storage management to prevent disk space issues.</p>
+</li>
+</ol>
+<p>The system’s modular design allows for easy maintenance, configuration, and extension of functionality. Components are loosely coupled, making it possible to update or replace individual modules without affecting the entire system.</p>
+<figure class="align-center" id="id1">
+<img alt="System Architecture Diagram" src="_images/system_architecture.png" />
+<figcaption>
+<p><span class="caption-text"><em>Figure 1: High-level architecture of the Vibration Monitoring System</em></span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Vibration Monitoring System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Deevia Software India Pvt Ltd.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{   
+    "mes_score": 150,
+    "fps": 20,
+    "video_duration": 180,
+    "stable_threshold": 15,
+    "motion_blur": false
+}
+  

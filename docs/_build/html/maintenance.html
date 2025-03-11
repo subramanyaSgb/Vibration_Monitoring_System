@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maintenance &mdash; Vibration Monitoring System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vibration Monitoring System" href="project_details.html" />
+    <link rel="prev" title="Troubleshooting Guide" href="troubleshooting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Vibration Monitoring System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Vibration Monitoring System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#routine-maintenance-tasks">Routine Maintenance Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#daily-checks">Daily Checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weekly-tasks">Weekly Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monthly-tasks">Monthly Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quarterly-tasks">Quarterly Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#system-updates">System Updates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#software-update-procedure">Software Update Procedure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-environment-updates">Python Environment Updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operating-system-updates">Operating System Updates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#backup-procedures">Backup Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database-backup">Database Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-backup">Configuration Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#full-system-backup">Full System Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backup-retention-policy">Backup Retention Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#health-monitoring">Health Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-health-indicators">System Health Indicators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring-tools">Monitoring Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preventive-maintenance">Preventive Maintenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#emergency-recovery">Emergency Recovery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-common-maintenance-issues">Troubleshooting Common Maintenance Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#storage-space-issues">Storage Space Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database-performance-degradation">Database Performance Degradation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#camera-connection-issues">Camera Connection Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plc-communication-failures">PLC Communication Failures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#maintenance-record-keeping">Maintenance Record Keeping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#maintenance-log">Maintenance Log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-documentation-updates">System Documentation Updates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Full Project Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="project_details.html">Vibration Monitoring System</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Vibration Monitoring System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Maintenance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/maintenance.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="maintenance">
+<h1>Maintenance<a class="headerlink" href="#maintenance" title="Link to this heading"></a></h1>
+<p>This section provides detailed information about maintaining the Vibration Monitoring System to ensure optimal performance and longevity.</p>
+<section id="routine-maintenance-tasks">
+<h2>Routine Maintenance Tasks<a class="headerlink" href="#routine-maintenance-tasks" title="Link to this heading"></a></h2>
+<section id="daily-checks">
+<h3>Daily Checks<a class="headerlink" href="#daily-checks" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Log Review</strong>: Review application logs in the <code class="docutils literal notranslate"><span class="pre">logs/</span></code> directory for any errors or warnings.</p></li>
+<li><p><strong>Camera Feed Verification</strong>: Verify all camera feeds are operational and providing clear images.</p></li>
+<li><p><strong>Disk Space Check</strong>: Ensure sufficient disk space is available for video recordings.</p></li>
+<li><p><strong>PLC Communication</strong>: Confirm stable communication with the PLC system.</p></li>
+</ul>
+</section>
+<section id="weekly-tasks">
+<h3>Weekly Tasks<a class="headerlink" href="#weekly-tasks" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Database Size Check</strong>: Monitor the growth of the PostgreSQL database.</p></li>
+<li><p><strong>Temporary File Cleanup</strong>: Remove temporary files that may accumulate in the system.</p></li>
+<li><p><strong>Camera Lens Inspection</strong>: Physically inspect and clean camera lenses if necessary.</p></li>
+<li><p><strong>System Performance Check</strong>: Review system resource usage (CPU, memory, network).</p></li>
+</ul>
+</section>
+<section id="monthly-tasks">
+<h3>Monthly Tasks<a class="headerlink" href="#monthly-tasks" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Configuration Backup</strong>: Create backups of all configuration files in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p></li>
+<li><p><strong>Database Maintenance</strong>: Run PostgreSQL VACUUM operations to optimize database performance.</p></li>
+<li><p><strong>System Updates</strong>: Apply any pending system updates (see System Updates section).</p></li>
+<li><p><strong>Hardware Inspection</strong>: Inspect all hardware components for signs of wear or damage.</p></li>
+</ul>
+</section>
+<section id="quarterly-tasks">
+<h3>Quarterly Tasks<a class="headerlink" href="#quarterly-tasks" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Comprehensive System Backup</strong>: Perform a full system backup including code, configurations, and database.</p></li>
+<li><p><strong>Network Infrastructure Check</strong>: Verify all network components are functioning correctly.</p></li>
+<li><p><strong>Camera Calibration</strong>: Recalibrate cameras if vibration detection accuracy has decreased.</p></li>
+<li><p><strong>Performance Optimization</strong>: Review and optimize system performance based on historical data.</p></li>
+</ul>
+</section>
+</section>
+<section id="system-updates">
+<h2>System Updates<a class="headerlink" href="#system-updates" title="Link to this heading"></a></h2>
+<section id="software-update-procedure">
+<h3>Software Update Procedure<a class="headerlink" href="#software-update-procedure" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Preparation</strong>:</p>
+<ul class="simple">
+<li><p>Create a complete backup of the current system.</p></li>
+<li><p>Schedule maintenance window during non-critical operational hours.</p></li>
+<li><p>Review the changelog of the new version.</p></li>
+</ul>
+</li>
+<li><p><strong>Update Process</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Navigate to the system directory</span>
+<span class="nb">cd</span><span class="w"> </span>D:<span class="se">\P</span>rojects<span class="se">\J</span>SW_Bellary<span class="se">\B</span>F2<span class="se">\V</span>ibration_Monitoring_System<span class="se">\D</span>evelopment<span class="se">\V</span>MS_BF2_07_12_2024
+
+<span class="c1"># Activate the virtual environment</span>
+call<span class="w"> </span>activate<span class="w"> </span>vms
+
+<span class="c1"># Update Python dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>--upgrade
+
+<span class="c1"># Apply any database migrations if provided with the update</span>
+python<span class="w"> </span>db_migrate.py<span class="w">  </span><span class="c1"># if applicable</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Testing</strong>:</p>
+<ul class="simple">
+<li><p>Restart the application using run.bat</p></li>
+<li><p>Verify all camera feeds are operational</p></li>
+<li><p>Test PLC communication</p></li>
+<li><p>Verify vibration detection is functioning correctly</p></li>
+<li><p>Review logs for any errors or warnings</p></li>
+</ul>
+</li>
+<li><p><strong>Rollback Procedure</strong> (if needed):</p>
+<ul class="simple">
+<li><p>Stop the application</p></li>
+<li><p>Restore from backup</p></li>
+<li><p>Restart the application</p></li>
+<li><p>Verify system functionality</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="python-environment-updates">
+<h3>Python Environment Updates<a class="headerlink" href="#python-environment-updates" title="Link to this heading"></a></h3>
+<p>To update the Python virtual environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate the virtual environment</span>
+call<span class="w"> </span>activate<span class="w"> </span>vms
+
+<span class="c1"># Update pip itself</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+
+<span class="c1"># Update all packages</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="operating-system-updates">
+<h3>Operating System Updates<a class="headerlink" href="#operating-system-updates" title="Link to this heading"></a></h3>
+<p>When applying Windows updates:</p>
+<ol class="arabic simple">
+<li><p>Schedule updates during maintenance windows</p></li>
+<li><p>Ensure all system services are properly stopped</p></li>
+<li><p>Backup system before major updates</p></li>
+<li><p>After updates, verify all services restart correctly</p></li>
+<li><p>Test system functionality comprehensively</p></li>
+</ol>
+</section>
+</section>
+<section id="backup-procedures">
+<h2>Backup Procedures<a class="headerlink" href="#backup-procedures" title="Link to this heading"></a></h2>
+<section id="database-backup">
+<h3>Database Backup<a class="headerlink" href="#database-backup" title="Link to this heading"></a></h3>
+<p>Perform regular PostgreSQL database backups:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Navigate to PostgreSQL bin directory</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;C:\Program Files\PostgreSQL\13\bin&quot;</span>
+
+<span class="c1"># Backup the database</span>
+pg_dump<span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>deevia_vms<span class="w"> </span>&gt;<span class="w"> </span>D:<span class="se">\B</span>ackups<span class="se">\d</span>b_backup_YYYY_MM_DD.sql
+</pre></div>
+</div>
+</section>
+<section id="configuration-backup">
+<h3>Configuration Backup<a class="headerlink" href="#configuration-backup" title="Link to this heading"></a></h3>
+<p>Backup all configuration files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create backup directory with date</span>
+<span class="nv">$backupDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;D:\Backups\Config_</span><span class="k">$(</span>Get-Date<span class="w"> </span>-Format<span class="w"> </span><span class="s1">&#39;yyyy_MM_dd&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+New-Item<span class="w"> </span>-Path<span class="w"> </span><span class="nv">$backupDir</span><span class="w"> </span>-ItemType<span class="w"> </span>Directory<span class="w"> </span>-Force
+
+<span class="c1"># Copy configuration files</span>
+Copy-Item<span class="w"> </span>-Path<span class="w"> </span><span class="s2">&quot;D:\Projects\JSW_Bellary\BF2\Vibration_Monitoring_System\Development\VMS_BF2_07_12_2024\data\*&quot;</span><span class="w"> </span>-Destination<span class="w"> </span><span class="nv">$backupDir</span><span class="w"> </span>-Recurse
+</pre></div>
+</div>
+</section>
+<section id="full-system-backup">
+<h3>Full System Backup<a class="headerlink" href="#full-system-backup" title="Link to this heading"></a></h3>
+<p>For complete system backup:</p>
+<ol class="arabic simple">
+<li><p>Stop all running application instances</p></li>
+<li><p>Backup the entire application directory</p></li>
+<li><p>Backup the PostgreSQL database</p></li>
+<li><p>Document the current system state including:
+* Camera configurations
+* PLC settings
+* Hardware configurations
+* Network settings</p></li>
+</ol>
+</section>
+<section id="backup-retention-policy">
+<h3>Backup Retention Policy<a class="headerlink" href="#backup-retention-policy" title="Link to this heading"></a></h3>
+<p>Implement the following backup retention schedule:</p>
+<ul class="simple">
+<li><p>Daily backups: Retain for 7 days</p></li>
+<li><p>Weekly backups: Retain for 4 weeks</p></li>
+<li><p>Monthly backups: Retain for 12 months</p></li>
+<li><p>Quarterly backups: Retain for 5 years</p></li>
+</ul>
+</section>
+</section>
+<section id="health-monitoring">
+<h2>Health Monitoring<a class="headerlink" href="#health-monitoring" title="Link to this heading"></a></h2>
+<section id="system-health-indicators">
+<h3>System Health Indicators<a class="headerlink" href="#system-health-indicators" title="Link to this heading"></a></h3>
+<p>Monitor the following indicators for system health:</p>
+<ol class="arabic simple">
+<li><p><strong>CPU Usage</strong>: Should remain below 70% during normal operation</p></li>
+<li><p><strong>Memory Usage</strong>: Should remain below 80% of available RAM</p></li>
+<li><p><strong>Disk Space</strong>: Maintain at least 20% free space on all drives</p></li>
+<li><p><strong>Network Latency</strong>: Camera feed latency should be &lt; 500ms</p></li>
+<li><p><strong>Database Response Time</strong>: Queries should complete within 1 second</p></li>
+<li><p><strong>Log Error Rate</strong>: Sudden increases in error logs may indicate issues</p></li>
+</ol>
+</section>
+<section id="monitoring-tools">
+<h3>Monitoring Tools<a class="headerlink" href="#monitoring-tools" title="Link to this heading"></a></h3>
+<p>Use the following tools for system health monitoring:</p>
+<ol class="arabic simple">
+<li><p><strong>Windows Performance Monitor</strong>:
+* Set up custom data collector sets for CPU, memory, disk, and network metrics
+* Configure alerts for threshold violations</p></li>
+<li><p><strong>PostgreSQL Monitoring</strong>:
+* Use pg_stat_statements to monitor query performance
+* Monitor database size growth over time
+* Set up alerts for slow queries</p></li>
+<li><p><strong>Application Logs</strong>:
+* Use a log analyzer to identify patterns and anomalies
+* Set up email alerts for critical errors</p></li>
+</ol>
+</section>
+<section id="preventive-maintenance">
+<h3>Preventive Maintenance<a class="headerlink" href="#preventive-maintenance" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Regular System Reboots</strong>:
+* Schedule weekly reboots during non-operational hours
+* Verify system comes up correctly after each reboot</p></li>
+<li><p><strong>Database Optimization</strong>:
+* Run VACUUM ANALYZE weekly to optimize database performance
+* Reindex tables monthly to maintain query performance</p></li>
+<li><p><strong>Log Rotation</strong>:
+* Ensure log rotation is functioning as configured
+* Verify logs are not consuming excessive disk space</p></li>
+</ol>
+</section>
+<section id="emergency-recovery">
+<h3>Emergency Recovery<a class="headerlink" href="#emergency-recovery" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Create Recovery Documentation</strong>:
+* Document step-by-step recovery procedures
+* Include contact information for support personnel
+* Keep printed copies accessible to operators</p></li>
+<li><p><strong>Recovery Testing</strong>:
+* Conduct quarterly recovery drills
+* Validate backup integrity by performing test restores
+* Update recovery procedures based on test results</p></li>
+</ol>
+</section>
+</section>
+<section id="troubleshooting-common-maintenance-issues">
+<h2>Troubleshooting Common Maintenance Issues<a class="headerlink" href="#troubleshooting-common-maintenance-issues" title="Link to this heading"></a></h2>
+<section id="storage-space-issues">
+<h3>Storage Space Issues<a class="headerlink" href="#storage-space-issues" title="Link to this heading"></a></h3>
+<p>If disk space becomes critically low:</p>
+<ol class="arabic simple">
+<li><p>Check the videos directory and remove oldest recordings if appropriate</p></li>
+<li><p>Verify log rotation is working correctly</p></li>
+<li><p>Run disk cleanup utilities on the server</p></li>
+<li><p>Consider increasing storage capacity if this is a recurring issue</p></li>
+</ol>
+</section>
+<section id="database-performance-degradation">
+<h3>Database Performance Degradation<a class="headerlink" href="#database-performance-degradation" title="Link to this heading"></a></h3>
+<p>If database performance degrades:</p>
+<ol class="arabic simple">
+<li><p>Run VACUUM ANALYZE on the database</p></li>
+<li><p>Check for long-running queries and optimize if necessary</p></li>
+<li><p>Verify index health and rebuild indexes if needed</p></li>
+<li><p>Consider increasing database server resources if necessary</p></li>
+</ol>
+</section>
+<section id="camera-connection-issues">
+<h3>Camera Connection Issues<a class="headerlink" href="#camera-connection-issues" title="Link to this heading"></a></h3>
+<p>If cameras become disconnected:</p>
+<ol class="arabic simple">
+<li><p>Verify network connectivity to the camera</p></li>
+<li><p>Check RTSP URL configuration</p></li>
+<li><p>Restart the camera if possible</p></li>
+<li><p>Verify power supply to the camera</p></li>
+<li><p>Replace the camera if hardware failure is confirmed</p></li>
+</ol>
+</section>
+<section id="plc-communication-failures">
+<h3>PLC Communication Failures<a class="headerlink" href="#plc-communication-failures" title="Link to this heading"></a></h3>
+<p>If PLC communication fails:</p>
+<ol class="arabic simple">
+<li><p>Check serial port connections</p></li>
+<li><p>Verify PLC is powered on and operational</p></li>
+<li><p>Reset the serial connection</p></li>
+<li><p>Run diagnostics on the PLC</p></li>
+<li><p>Update PLC firmware if necessary</p></li>
+</ol>
+</section>
+</section>
+<section id="maintenance-record-keeping">
+<h2>Maintenance Record Keeping<a class="headerlink" href="#maintenance-record-keeping" title="Link to this heading"></a></h2>
+<section id="maintenance-log">
+<h3>Maintenance Log<a class="headerlink" href="#maintenance-log" title="Link to this heading"></a></h3>
+<p>Maintain a detailed maintenance log including:</p>
+<ul class="simple">
+<li><p>Date and time of maintenance</p></li>
+<li><p>Type of maintenance performed</p></li>
+<li><p>Issues discovered</p></li>
+<li><p>Actions taken</p></li>
+<li><p>Results of maintenance</p></li>
+<li><p>Name of personnel performing maintenance</p></li>
+</ul>
+<p>This log should be stored both electronically and in hard copy.</p>
+</section>
+<section id="system-documentation-updates">
+<h3>System Documentation Updates<a class="headerlink" href="#system-documentation-updates" title="Link to this heading"></a></h3>
+<p>Update system documentation when:</p>
+<ul class="simple">
+<li><p>New hardware is installed</p></li>
+<li><p>Software is upgraded</p></li>
+<li><p>Configuration changes are made</p></li>
+<li><p>Operational procedures are modified</p></li>
+</ul>
+<p>Ensure all documentation references the correct versions and includes the date of last update.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>Regular and systematic maintenance is essential for the reliable operation of the  Vibration Monitoring System. By following these guidelines, system administrators can ensure optimal performance, minimize downtime, and extend the service life of the system.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="troubleshooting.html" class="btn btn-neutral float-left" title="Troubleshooting Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="project_details.html" class="btn btn-neutral float-right" title="Vibration Monitoring System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Deevia Software India Pvt Ltd.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

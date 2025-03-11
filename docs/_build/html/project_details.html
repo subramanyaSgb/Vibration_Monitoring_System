@@ -1,0 +1,2068 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibration Monitoring System &mdash; Vibration Monitoring System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Maintenance" href="maintenance.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Vibration Monitoring System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Vibration Monitoring System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Full Project Details:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Vibration Monitoring System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#project-overview">Project Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-architecture">System Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-requirements">Software Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-and-installation">Setup and Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-setup">Environment Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-application">Running the Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#file-structure">File Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-documentation">Module Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app-py-main-application">app.py (Main Application)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#class-videoprocessor">Class: <code class="docutils literal notranslate"><span class="pre">VideoProcessor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-load-config">Function: <code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#main-block">Main Block</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cam-py-camera-module">cam.py (Camera Module)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#class-camconnect">Class: <code class="docutils literal notranslate"><span class="pre">CamConnect</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-camerathread">Class: <code class="docutils literal notranslate"><span class="pre">CameraThread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-load-camera-config">Function: <code class="docutils literal notranslate"><span class="pre">load_camera_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#plc-py-plc-communication-module">plc.py (PLC Communication Module)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#class-plc">Class: <code class="docutils literal notranslate"><span class="pre">PLC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database-py-database-operations">database.py (Database Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#function-create-db-if-not-exists">Function: <code class="docutils literal notranslate"><span class="pre">create_db_if_not_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-create-table-if-not-exists">Function: <code class="docutils literal notranslate"><span class="pre">create_table_if_not_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-store-vibration-stopped-time">Function: <code class="docutils literal notranslate"><span class="pre">store_vibration_stopped_time()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#logging-config-py-logging-configuration">logging_config.py (Logging Configuration)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#function-setup-logger">Function: <code class="docutils literal notranslate"><span class="pre">setup_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variable-logger">Variable: <code class="docutils literal notranslate"><span class="pre">logger</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#file-verifier-py-file-verification">file_verifier.py (File Verification)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#function-verify-config-files">Function: <code class="docutils literal notranslate"><span class="pre">verify_config_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-create-directories">Function: <code class="docutils literal notranslate"><span class="pre">create_directories()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-check-and-create-files">Function: <code class="docutils literal notranslate"><span class="pre">check_and_create_files()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-files">Configuration Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cameras-json">cameras.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roi-json">roi.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config-json">config.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storage-limit-json">storage_limit.json</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#camera-connection-issues">Camera Connection Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#symptoms">Symptoms:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#possible-causes">Possible Causes:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solutions">Solutions:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#plc-communication-issues">PLC Communication Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Symptoms:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Possible Causes:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Solutions:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database-issues">Database Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Symptoms:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Possible Causes:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Solutions:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#video-recording-issues">Video Recording Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Symptoms:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Possible Causes:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Solutions:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#maintenance">Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#regular-maintenance-tasks">Regular Maintenance Tasks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#daily">Daily</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#weekly">Weekly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#monthly">Monthly</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#system-upgrade-procedures">System Upgrade Procedures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#technical-references">Technical References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#internal-references">Internal References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Vibration Monitoring System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Vibration Monitoring System</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/project_details.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vibration-monitoring-system">
+<h1>Vibration Monitoring System<a class="headerlink" href="#vibration-monitoring-system" title="Link to this heading"></a></h1>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="#introduction">Introduction</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="#project-overview">Project Overview</a></p></li>
+<li><p><a class="reference external" href="#system-architecture">System Architecture</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#requirements">Requirements</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="#hardware-requirements">Hardware Requirements</a></p></li>
+<li><p><a class="reference external" href="#software-requirements">Software Requirements</a></p></li>
+<li><p><a class="reference external" href="#dependencies">Dependencies</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#setup-and-installation">Setup and Installation</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="#environment-setup">Environment Setup</a></p></li>
+<li><p><a class="reference external" href="#configuration">Configuration</a></p></li>
+<li><p><a class="reference external" href="#running-the-application">Running the Application</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#file-structure">File Structure</a></p></li>
+<li><p><a class="reference external" href="#module-documentation">Module Documentation</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="#apppy-main-application">app.py (Main Application)</a></p></li>
+<li><p><a class="reference external" href="#campy-camera-module">cam.py (Camera Module)</a></p></li>
+<li><p><a class="reference external" href="#plcpy-plc-communication-module">plc.py (PLC Communication Module)</a></p></li>
+<li><p><a class="reference external" href="#databasepy-database-operations">database.py (Database Operations)</a></p></li>
+<li><p><a class="reference external" href="#logging_configpy-logging-configuration">logging_config.py (Logging Configuration)</a></p></li>
+<li><p><a class="reference external" href="#file_verifierpy-file-verification">file_verifier.py (File Verification)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#configuration-files">Configuration Files</a></p></li>
+<li><p><a class="reference external" href="#troubleshooting">Troubleshooting</a></p></li>
+<li><p><a class="reference external" href="#maintenance">Maintenance</a></p></li>
+<li><p><a class="reference external" href="#references">References</a></p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<section id="project-overview">
+<h3>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading"></a></h3>
+<p>The Vibration Monitoring System is designed to monitor and detect vibrations in Steel Plant. The system utilizes camera-based vibration detection techniques to identify abnormal vibration patterns, which may indicate potential issues in the blast furnace operation. When vibrations are detected or when they stop, the system interacts with Programmable Logic Controllers (PLCs) to signal control systems and logs these events in a PostgreSQL database for historical analysis and reporting.</p>
+<p>The system provides a real-time monitoring interface that displays camera feeds with visual indicators for vibration status. It also records video footage during vibration events for later analysis, with a configurable storage management system to handle disk space constraints.</p>
+</section>
+<section id="system-architecture">
+<h3>System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading"></a></h3>
+<p>The Vibration Monitoring System is built with a modular architecture consisting of the following core components:</p>
+<ol class="simple">
+<li><p><strong>Camera Monitoring</strong>: Utilizes RTSP camera feeds with OpenCV to capture and process video streams.</p></li>
+<li><p><strong>Vibration Detection Algorithm</strong>: Analyzes frame-to-frame differences within configured Regions of Interest (ROI) to detect vibration patterns.</p></li>
+<li><p><strong>PLC Interface</strong>: Communicates with industrial PLCs via Modbus ASCII protocol to signal control systems.</p></li>
+<li><p><strong>Database System</strong>: PostgreSQL database for storing vibration event data, including timestamps of when vibrations stop.</p></li>
+<li><p><strong>Logging System</strong>: Comprehensive logging with automatic rotation for system monitoring and diagnostics.</p></li>
+<li><p><strong>Video Recording</strong>: Automatically captures and organizes video recordings of vibration events.</p></li>
+</ol>
+<p>The system’s modular design allows for easy maintenance, configuration, and extension of functionality.</p>
+</section>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<section id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Server/PC with:</p>
+<ul>
+<li><p>Intel Core i5 processor or better</p></li>
+<li><p>Minimum 8GB RAM</p></li>
+<li><p>At least 100GB of available disk space</p></li>
+<li><p>Network interface card for camera connectivity</p></li>
+<li><p>Serial port (COM port) for PLC communication</p></li>
+</ul>
+</li>
+<li><p>Network cameras with RTSP stream capability</p></li>
+<li><p>PLC system with Modbus ASCII protocol support</p></li>
+<li><p>Network infrastructure for camera and system connectivity</p></li>
+</ul>
+</section>
+<section id="software-requirements">
+<h3>Software Requirements<a class="headerlink" href="#software-requirements" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Windows 10 or later (64-bit)</p></li>
+<li><p>Python 3.7 or later</p></li>
+<li><p>PostgreSQL database server</p></li>
+<li><p>OpenCV 4.x</p></li>
+<li><p>Appropriate camera firmware with RTSP support</p></li>
+</ul>
+</section>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h3>
+<p>The system relies on the following Python packages:</p>
+<ul class="simple">
+<li><p>OpenCV (<code class="docutils literal notranslate"><span class="pre">cv2</span></code>): For camera operations and image processing</p></li>
+<li><p>NumPy: For numerical operations and array handling</p></li>
+<li><p>minimalmodbus: For PLC communication via Modbus ASCII protocol</p></li>
+<li><p>psycopg2: For PostgreSQL database connectivity</p></li>
+<li><p>Standard Python libraries:</p>
+<ul>
+<li><p>datetime: For timestamp management</p></li>
+<li><p>threading: For multi-threaded camera handling</p></li>
+<li><p>json: For configuration file parsing</p></li>
+<li><p>os, shutil: For file system operations</p></li>
+<li><p>time: For timing operations</p></li>
+<li><p>logging: For system-wide logging</p></li>
+</ul>
+</li>
+</ul>
+<p>All dependencies are listed in the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file.</p>
+</section>
+</section>
+<section id="setup-and-installation">
+<h2>Setup and Installation<a class="headerlink" href="#setup-and-installation" title="Link to this heading"></a></h2>
+<section id="environment-setup">
+<h3>Environment Setup<a class="headerlink" href="#environment-setup" title="Link to this heading"></a></h3>
+<ol>
+<li><p><strong>Install Python 3.7 or later</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download from https://www.python.org/downloads/</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create a virtual environment named “vms”</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>vms
+</pre></div>
+</div>
+</li>
+<li><p><strong>Activate the virtual environment</strong></p>
+<ul>
+<li><p>Windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vms</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p>Linux/MacOS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">vms</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Install required dependencies</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install PostgreSQL</strong></p>
+<ul class="simple">
+<li><p>Download from https://www.postgresql.org/download/</p></li>
+<li><p>Install with default settings</p></li>
+<li><p>Create a user with username “postgres” and password “root”</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h3>
+<ol>
+<li><p><strong>Camera Configuration</strong></p>
+<ul>
+<li><p>Create/edit <code class="docutils literal notranslate"><span class="pre">data/cameras.json</span></code> with the following format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;camera_serial_number_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rtsp://camera_ip_1:port/stream&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;camera_serial_number_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rtsp://camera_ip_2:port/stream&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>ROI Configuration</strong></p>
+<ul>
+<li><p>Create/edit <code class="docutils literal notranslate"><span class="pre">data/roi.json</span></code> with the following format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>System Configuration</strong></p>
+<ul>
+<li><p>Create/edit <code class="docutils literal notranslate"><span class="pre">data/config.json</span></code> with the following format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mes_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;video_duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;stable_threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;motion_blur&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Storage Limit Configuration</strong></p>
+<ul>
+<li><p>Create/edit <code class="docutils literal notranslate"><span class="pre">data/storage_limit.json</span></code> with the following format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;limit_gb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>PLC Configuration</strong></p>
+<ul class="simple">
+<li><p>The PLC connection is configured in <code class="docutils literal notranslate"><span class="pre">plc.py</span></code> with the following default settings:</p>
+<ul>
+<li><p>Serial port: COM7</p></li>
+<li><p>Baud rate: 9600</p></li>
+<li><p>Data bits: 7</p></li>
+<li><p>Parity: Even</p></li>
+<li><p>Stop bits: 1</p></li>
+</ul>
+</li>
+<li><p>Modify these settings in the <code class="docutils literal notranslate"><span class="pre">connectToPLC</span></code> method if needed</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="running-the-application">
+<h3>Running the Application<a class="headerlink" href="#running-the-application" title="Link to this heading"></a></h3>
+<ol>
+<li><p><strong>Using run.bat (recommended)</strong></p>
+<ul class="simple">
+<li><p>Simply double-click the <code class="docutils literal notranslate"><span class="pre">run.bat</span></code> file</p></li>
+<li><p>This activates the “vms” environment and runs app.py</p></li>
+</ul>
+</li>
+<li><p><strong>Manual execution</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>call<span class="w"> </span>activate<span class="w"> </span>vms
+python<span class="w"> </span>app.py
+</pre></div>
+</div>
+</li>
+<li><p><strong>Exit the application</strong></p>
+<ul class="simple">
+<li><p>Press ‘q’ key when the application window is in focus to exit cleanly</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="file-structure">
+<h2>File Structure<a class="headerlink" href="#file-structure" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>VMS_BF2_07_12_2024/
+│
+├── app.py                  # Main application entry point
+├── cam.py                  # Camera connection and management
+├── plc.py                  # PLC communication module
+├── database.py             # Database operations
+├── logging_config.py       # Logging system configuration
+├── file_verifier.py        # File and directory verification
+├── requirements.txt        # Python dependencies
+├── run.bat                 # Application launcher script
+│
+├── data/                   # Configuration files
+│   ├── cameras.json        # Camera RTSP URLs
+│   ├── config.json         # System configuration
+│   ├── roi.json            # Region of Interest settings
+│   └── storage_limit.json  # Storage management settings
+│
+├── logs/                   # Application logs (created at runtime)
+│   └── VMS_YYYY-MM-DD.log  # Daily log files
+│
+└── results/                # Recorded videos (created at runtime)
+    └── videos/
+        └── YYYY-MM-DD/     # Date-organized folders
+            └── HH-MM-SS.avi # Time-stamped video files
+</pre></div>
+</div>
+</section>
+<section id="module-documentation">
+<h2>Module Documentation<a class="headerlink" href="#module-documentation" title="Link to this heading"></a></h2>
+<section id="app-py-main-application">
+<h3>app.py (Main Application)<a class="headerlink" href="#app-py-main-application" title="Link to this heading"></a></h3>
+<p>This is the primary entry point for the application that coordinates all subsystems.</p>
+<section id="class-videoprocessor">
+<h4>Class: <code class="docutils literal notranslate"><span class="pre">VideoProcessor</span></code><a class="headerlink" href="#class-videoprocessor" title="Link to this heading"></a></h4>
+<section id="init-self-mes-score-50-fps-10-video-duration-180-stable-threshold-1-motion-blur-true">
+<h5><code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">mes_score=50,</span> <span class="pre">fps=10,</span> <span class="pre">video_duration=180,</span> <span class="pre">stable_threshold=1,</span> <span class="pre">motion_blur=True)</span></code><a class="headerlink" href="#init-self-mes-score-50-fps-10-video-duration-180-stable-threshold-1-motion-blur-true" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Initializes the Vibration Detection System with configuration parameters</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mes_score</span></code> (int, default=50): Threshold for motion energy score to detect vibrations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fps</span></code> (int, default=10): Frames per second for video processing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">video_duration</span></code> (int, default=180): Duration of recorded video in seconds</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stable_threshold</span></code> (int, default=1): Threshold for determining stability in seconds</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">motion_blur</span></code> (bool, default=True): Enable/disable motion blur detection</p></li>
+</ul>
+</li>
+<li><p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MOTION_BLUR</span></code>: Flag to enable/disable motion blur detection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FPS</span></code>: Frames per second for video processing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VIDEO_DURATION</span></code>: Duration of video recording in seconds</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stable_time</span></code>: Counter for tracking stable duration before detecting vibration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STABLE_THRESHOLD</span></code>: Threshold in seconds to determine if an object is stable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mes_score</span></code>: Motion energy score threshold for vibration detection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cnt_frame</span></code>: Counter for processed frames</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fps</span></code>: Current processing frames per second</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_dict</span></code>: Dictionary to store frames from cameras</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">camera_threads</span></code>: List storing active camera threads</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">video_writer</span></code>: Video writer object for saving recordings</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_time</span></code>: Timestamp when system was initialized</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">video_start_time</span></code>: Timestamp when video recording started</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_gray_p</span></code>: Previous grayscale frame for comparison</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: System interface title</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last_saved_time</span></code>: Timestamp of last saved video/frame</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">roi</span></code>: Region of interest configuration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fps_for_frame</span></code>: FPS counter for individual frames</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last_plc_signal_time</span></code>: Timestamp of last PLC signal</p></li>
+</ul>
+</li>
+<li><p><strong>Database Initialization</strong>: Calls <code class="docutils literal notranslate"><span class="pre">create_db_if_not_exists()</span></code> and <code class="docutils literal notranslate"><span class="pre">create_table_if_not_exists()</span></code></p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span> <span class="o">=</span> <span class="n">VideoProcessor</span><span class="p">(</span><span class="n">mes_score</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">video_duration</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">stable_threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="load-storage-limit-self">
+<h5><code class="docutils literal notranslate"><span class="pre">load_storage_limit(self)</span></code><a class="headerlink" href="#load-storage-limit-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Loads storage limit from configuration file</p></li>
+<li><p><strong>Returns</strong>: Storage limit in GB (default: 30GB)</p></li>
+<li><p><strong>File Source</strong>: ‘data/storage_limit.json’</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Attempts to read and parse JSON from storage_limit.json</p></li>
+<li><p>Extracts the ‘limit_gb’ value</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>: Returns default value (30GB) if file is missing or corrupt</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">storage_limit</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">load_storage_limit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current storage limit is </span><span class="si">{</span><span class="n">storage_limit</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="check-storage-self">
+<h5><code class="docutils literal notranslate"><span class="pre">check_storage(self)</span></code><a class="headerlink" href="#check-storage-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Checks available disk space against the configured limit</p></li>
+<li><p><strong>Returns</strong>: Boolean (True if sufficient space, False if below limit)</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Loads storage limit from configuration</p></li>
+<li><p>Checks available disk space using shutil.disk_usage</p></li>
+<li><p>Compares available space to limit</p></li>
+<li><p>Logs warning if space is low</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">processor</span><span class="o">.</span><span class="n">check_storage</span><span class="p">():</span>
+    <span class="c1"># Proceed with recording</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Display warning or stop recording</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="load-roi-self">
+<h5><code class="docutils literal notranslate"><span class="pre">load_roi(self)</span></code><a class="headerlink" href="#load-roi-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Loads Region of Interest (ROI) configuration from file</p></li>
+<li><p><strong>Returns</strong>: ROI configuration as dictionary with keys ‘x’, ‘y’, ‘width’, ‘height’</p></li>
+<li><p><strong>File Source</strong>: ‘data/roi.json’</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Attempts to read and parse JSON from roi.json</p></li>
+<li><p>Validates that required keys exist</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs error and returns None if file is missing or invalid</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">roi</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">load_roi</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">roi</span><span class="p">:</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">roi</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">width</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="add-camera-self-cam-serial-num-rtsp-path">
+<h5><code class="docutils literal notranslate"><span class="pre">add_camera(self,</span> <span class="pre">cam_serial_num,</span> <span class="pre">rtsp_path)</span></code><a class="headerlink" href="#add-camera-self-cam-serial-num-rtsp-path" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Adds and initializes a camera connection</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cam_serial_num</span></code>: Camera serial number identifier</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtsp_path</span></code>: RTSP URL for camera connection</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Creates a CameraThread with given serial number and RTSP path</p></li>
+<li><p>Adds thread to camera_threads list</p></li>
+<li><p>Starts the thread for capturing frames</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs error if camera addition fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">add_camera</span><span class="p">(</span><span class="s2">&quot;CAM001&quot;</span><span class="p">,</span> <span class="s2">&quot;rtsp://192.168.1.100:554/stream&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="create-video-writer-self-output-path">
+<h5><code class="docutils literal notranslate"><span class="pre">create_video_writer(self,</span> <span class="pre">output_path)</span></code><a class="headerlink" href="#create-video-writer-self-output-path" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Creates a video writer object for recording</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">output_path</span></code>: Path where video will be saved</p></li>
+</ul>
+</li>
+<li><p><strong>Returns</strong>: OpenCV VideoWriter object</p></li>
+<li><p><strong>Configuration</strong>:</p>
+<ul class="simple">
+<li><p>Codec: XVID</p></li>
+<li><p>Frame size: 1920x1080</p></li>
+<li><p>FPS: Uses the configured FPS value</p></li>
+</ul>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if creation fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">writer</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">create_video_writer</span><span class="p">(</span><span class="s2">&quot;path/to/output.avi&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="mse-self-image-a-image-b">
+<h5><code class="docutils literal notranslate"><span class="pre">mse(self,</span> <span class="pre">image_a,</span> <span class="pre">image_b)</span></code><a class="headerlink" href="#mse-self-image-a-image-b" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Calculates Mean Squared Error between two images</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">image_a</span></code>: First image for comparison</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">image_b</span></code>: Second image for comparison</p></li>
+</ul>
+</li>
+<li><p><strong>Returns</strong>: MSE value (float)</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Calculates squared difference between pixel values</p></li>
+<li><p>Averages the differences</p></li>
+</ol>
+</li>
+<li><p><strong>Used For</strong>: Detecting vibration by comparing consecutive frames</p></li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if calculation fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">error</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">mse</span><span class="p">(</span><span class="n">gray_frame1</span><span class="p">,</span> <span class="n">gray_frame2</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Motion detected&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="lighting-compensation-self-frame">
+<h5><code class="docutils literal notranslate"><span class="pre">lighting_compensation(self,</span> <span class="pre">frame)</span></code><a class="headerlink" href="#lighting-compensation-self-frame" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Applies histogram equalization to compensate for lighting variations</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: Input BGR image</p></li>
+</ul>
+</li>
+<li><p><strong>Returns</strong>: Histogram equalized grayscale image</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Converts frame to grayscale</p></li>
+<li><p>Applies histogram equalization</p></li>
+</ol>
+</li>
+<li><p><strong>Why It’s Used</strong>: To normalize lighting conditions for more reliable motion detection</p></li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if processing fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">compensated</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">lighting_compensation</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="overlay-logo-self-frame-logo-position-10-10">
+<h5><code class="docutils literal notranslate"><span class="pre">overlay_logo(self,</span> <span class="pre">frame,</span> <span class="pre">logo,</span> <span class="pre">position=(10,</span> <span class="pre">10))</span></code><a class="headerlink" href="#overlay-logo-self-frame-logo-position-10-10" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Overlays a logo on the frame</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: Target frame to overlay logo on</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logo</span></code>: Logo image (with or without alpha channel)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">position</span></code>: Tuple of (x, y) coordinates for logo placement</p></li>
+</ul>
+</li>
+<li><p><strong>Returns</strong>: Frame with overlaid logo</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Positions logo at specified coordinates (adjusts to right side)</p></li>
+<li><p>Handles alpha channel if present for transparent overlay</p></li>
+<li><p>Directly overlays if no alpha channel</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if overlay fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame_with_logo</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">overlay_logo</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">logo_img</span><span class="p">,</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="put-title-self-frame-title">
+<h5><code class="docutils literal notranslate"><span class="pre">put_title(self,</span> <span class="pre">frame,</span> <span class="pre">title)</span></code><a class="headerlink" href="#put-title-self-frame-title" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Adds a title text to the frame</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: Target frame to add title to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: Text to display as title</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Calculates text size and position for centered alignment</p></li>
+<li><p>Draws background rectangle</p></li>
+<li><p>Adds title text with white color</p></li>
+</ol>
+</li>
+<li><p><strong>Configuration</strong>:</p>
+<ul class="simple">
+<li><p>Font: FONT_HERSHEY_SIMPLEX</p></li>
+<li><p>Scale: 1</p></li>
+<li><p>Color: White (255, 255, 255)</p></li>
+<li><p>Thickness: 2</p></li>
+</ul>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if text placement fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">put_title</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="s2">&quot;Vibration Monitoring System&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="put-motion-notification-self-frame-text">
+<h5><code class="docutils literal notranslate"><span class="pre">put_motion_notification(self,</span> <span class="pre">frame,</span> <span class="pre">text)</span></code><a class="headerlink" href="#put-motion-notification-self-frame-text" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Adds vibration status notification text to the frame</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: Target frame to add notification to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: Notification text (e.g., “Vibration Detected!” or “No Vibration detected”)</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Calculates text size and position for centered alignment at bottom</p></li>
+<li><p>Draws background rectangle</p></li>
+<li><p>Adds notification text with color based on content</p></li>
+</ol>
+</li>
+<li><p><strong>Color Coding</strong>:</p>
+<ul class="simple">
+<li><p>“Vibration Detected!”: Green (0, 255, 0)</p></li>
+<li><p>Other text: Red (0, 0, 255)</p></li>
+</ul>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if text placement fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">put_motion_notification</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="s2">&quot;Vibration Detected!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="show-self-name-frame">
+<h5><code class="docutils literal notranslate"><span class="pre">show(self,</span> <span class="pre">name,</span> <span class="pre">frame)</span></code><a class="headerlink" href="#show-self-name-frame" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Displays frame in a window</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Window name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: Frame to display</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Creates named window with WINDOW_NORMAL flag</p></li>
+<li><p>Displays the frame in that window</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if display fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;Camera Feed&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="start-video-recording-self-video-writer-frame-raw">
+<h5><code class="docutils literal notranslate"><span class="pre">start_video_recording(self,</span> <span class="pre">video_writer,</span> <span class="pre">frame_raw)</span></code><a class="headerlink" href="#start-video-recording-self-video-writer-frame-raw" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Writes a frame to video recording</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">video_writer</span></code>: OpenCV VideoWriter object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_raw</span></code>: Frame to write to video</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>: Writes the frame to the video file</p></li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if recording fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">start_video_recording</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="process-frame-self-frame-raw-logo-frame-gray">
+<h5><code class="docutils literal notranslate"><span class="pre">process_frame(self,</span> <span class="pre">frame_raw,</span> <span class="pre">logo,</span> <span class="pre">frame_gray)</span></code><a class="headerlink" href="#process-frame-self-frame-raw-logo-frame-gray" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Core function for processing each frame for vibration detection</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_raw</span></code>: Original unprocessed frame</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logo</span></code>: Logo image to overlay</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_gray</span></code>: Grayscale version of frame</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Checks storage availability</p></li>
+<li><p>Loads ROI configuration</p></li>
+<li><p>Extracts ROI region from frame</p></li>
+<li><p>Applies optional motion blur</p></li>
+<li><p>Applies lighting compensation</p></li>
+<li><p>Overlays logo and title</p></li>
+<li><p>Draws ROI rectangle on display frame</p></li>
+<li><p>Calculates MSE between current and previous ROI</p></li>
+<li><p>Detects vibration if MSE exceeds threshold</p></li>
+<li><p>Manages PLC signaling based on vibration state</p></li>
+<li><p>Updates frame with notifications and FPS</p></li>
+<li><p>Displays the processed frame</p></li>
+<li><p>Stores current grayscale frame for next comparison</p></li>
+</ol>
+</li>
+<li><p><strong>PLC Interaction</strong>:</p>
+<ul class="simple">
+<li><p>Sends signal to PLC when vibration stops</p></li>
+<li><p>Writes bit 200 to address 4106 when vibration detected</p></li>
+<li><p>Writes bit 100 to address 4106 when stable</p></li>
+</ul>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if processing fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">process_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">logo</span><span class="p">,</span> <span class="n">gray_frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="manage-video-self">
+<h5><code class="docutils literal notranslate"><span class="pre">manage_video(self)</span></code><a class="headerlink" href="#manage-video-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Manages video recording file creation and path</p></li>
+<li><p><strong>Returns</strong>: Current time string in format “HH:MM:SS”</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Checks if video_writer exists</p></li>
+<li><p>If not, creates required directories with date-based structure</p></li>
+<li><p>Names video files with time-based filenames (HH-MM-SS.avi)</p></li>
+<li><p>Creates a new video writer</p></li>
+</ol>
+</li>
+<li><p><strong>Path Structure</strong>: “results/videos/YYYY-MM-DD/HH-MM-SS.avi”</p></li>
+<li><p><strong>Exception Handling</strong>: Logs error and re-raises if video management fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">current_time</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">manage_video</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="process-self">
+<h5><code class="docutils literal notranslate"><span class="pre">process(self)</span></code><a class="headerlink" href="#process-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Main processing loop for the application</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Loads logo image</p></li>
+<li><p>Loads camera configuration and initializes cameras</p></li>
+<li><p>Enters main processing loop:</p>
+<ul class="simple">
+<li><p>Gets frames from camera threads</p></li>
+<li><p>Adds timestamp to frame</p></li>
+<li><p>Manages video recording</p></li>
+<li><p>Processes frame for vibration detection</p></li>
+<li><p>Records video if storage is sufficient</p></li>
+<li><p>Handles video duration and creates new files as needed</p></li>
+<li><p>Calculates and tracks FPS</p></li>
+<li><p>Checks for keyboard interrupts</p></li>
+</ul>
+</li>
+<li><p>Cleanup on exit:</p>
+<ul class="simple">
+<li><p>Releases video writer</p></li>
+<li><p>Resets PLC signal</p></li>
+<li><p>Closes OpenCV windows</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>Exit Condition</strong>: Press ‘q’ key to exit</p></li>
+<li><p><strong>Exception Handling</strong>: Logs errors and ensures cleanup</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="function-load-config">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">load_config()</span></code><a class="headerlink" href="#function-load-config" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Loads application configuration from file</p></li>
+<li><p><strong>Returns</strong>: Tuple of (mes_score, fps, video_duration, stable_threshold, motion_blur)</p></li>
+<li><p><strong>File Source</strong>: ‘data/config.json’</p></li>
+<li><p><strong>Default Values</strong>:</p>
+<ul class="simple">
+<li><p>mes_score: 50</p></li>
+<li><p>fps: 20</p></li>
+<li><p>video_duration: 180</p></li>
+<li><p>stable_threshold: 5</p></li>
+<li><p>motion_blur: True</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Attempts to read and parse JSON from config.json</p></li>
+<li><p>Extracts configuration values with defaults if keys are missing</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>: Returns default values if file is missing or invalid</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mes_score</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="n">video_duration</span><span class="p">,</span> <span class="n">stable_threshold</span><span class="p">,</span> <span class="n">motion_blur</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="main-block">
+<h4>Main Block<a class="headerlink" href="#main-block" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Entry point for the application</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Loads configuration using load_config()</p></li>
+<li><p>Creates VideoProcessor instance with loaded configuration</p></li>
+<li><p>Calls process() to start the main application loop</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>: Run the script directly with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">app.py</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="cam-py-camera-module">
+<h3>cam.py (Camera Module)<a class="headerlink" href="#cam-py-camera-module" title="Link to this heading"></a></h3>
+<p>This module handles camera connections and video frame acquisition.</p>
+<section id="class-camconnect">
+<h4>Class: <code class="docutils literal notranslate"><span class="pre">CamConnect</span></code><a class="headerlink" href="#class-camconnect" title="Link to this heading"></a></h4>
+<section id="init-self-cam-address">
+<h5><code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">cam_address)</span></code><a class="headerlink" href="#init-self-cam-address" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Initializes connection to camera via RTSP</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cam_address</span></code>: RTSP URL for camera connection</p></li>
+</ul>
+</li>
+<li><p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cam_address</span></code>: Stored RTSP URL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">capture</span></code>: OpenCV VideoCapture object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RECONNECTION_PERIOD</span></code>: Wait time between reconnection attempts (0.5 seconds)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: Current frame from camera</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Stores camera address</p></li>
+<li><p>Initializes VideoCapture with the RTSP URL</p></li>
+<li><p>Creates and starts frame grabbing thread</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>: Initializes with default error frame if connection fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span> <span class="o">=</span> <span class="n">CamConnect</span><span class="p">(</span><span class="s2">&quot;rtsp://192.168.1.100:554/stream&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="grab-frame-self">
+<h5><code class="docutils literal notranslate"><span class="pre">grab_frame(self)</span></code><a class="headerlink" href="#grab-frame-self" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Thread function to continuously grab frames from camera</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Runs in infinite loop while connection exists</p></li>
+<li><p>Continuously attempts to read frames using capture.read()</p></li>
+<li><p>Stores latest frame in self.frame</p></li>
+<li><p>If connection fails (ret is False), attempts reconnection</p></li>
+<li><p>Uses error frame if reconnection fails</p></li>
+</ol>
+</li>
+<li><p><strong>Thread Safety</strong>: Uses try-except to handle thread interruptions</p></li>
+<li><p><strong>Usage</strong>: Called internally by <code class="docutils literal notranslate"><span class="pre">__init__</span></code> in a separate thread</p></li>
+</ul>
+</section>
+<section id="reconnect-camera-self">
+<h5><code class="docutils literal notranslate"><span class="pre">reconnect_camera(self)</span></code><a class="headerlink" href="#reconnect-camera-self" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Attempts to reconnect to camera after connection loss</p></li>
+<li><p><strong>Returns</strong>: Boolean - True if reconnection successful, False otherwise</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Releases current VideoCapture if it exists</p></li>
+<li><p>Tries to connect up to 3 times</p></li>
+<li><p>Creates new VideoCapture with stored RTSP URL</p></li>
+<li><p>Tests connection by reading a frame</p></li>
+<li><p>Waits RECONNECTION_PERIOD (0.5s) between attempts</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>: Called automatically by <code class="docutils literal notranslate"><span class="pre">grab_frame</span></code> when connection fails</p></li>
+</ul>
+</section>
+<section id="read-self">
+<h5><code class="docutils literal notranslate"><span class="pre">read(self)</span></code><a class="headerlink" href="#read-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Returns the current frame from camera</p></li>
+<li><p><strong>Returns</strong>: Current frame or error image if unavailable</p></li>
+<li><p><strong>Process</strong>: Simply returns the most recent frame grabbed by the background thread</p></li>
+<li><p><strong>Thread Safety</strong>: Designed to be called from main thread while grab_frame runs in background</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Camera Feed&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="release-self">
+<h5><code class="docutils literal notranslate"><span class="pre">release(self)</span></code><a class="headerlink" href="#release-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Releases camera resources</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Releases the VideoCapture object if it exists</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>: Call when done with camera to free resources</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="class-camerathread">
+<h4>Class: <code class="docutils literal notranslate"><span class="pre">CameraThread</span></code><a class="headerlink" href="#class-camerathread" title="Link to this heading"></a></h4>
+<section id="init-self-camera-serial-number-rtsp-link-frame-dictionary">
+<h5><code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">camera_serial_number,</span> <span class="pre">rtsp_link,</span> <span class="pre">frame_dictionary)</span></code><a class="headerlink" href="#init-self-camera-serial-number-rtsp-link-frame-dictionary" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Initializes thread for camera operations</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">camera_serial_number</span></code>: Serial number identifier for camera</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtsp_link</span></code>: RTSP URL for camera connection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_dictionary</span></code>: Shared dictionary to store frames from multiple cameras</p></li>
+</ul>
+</li>
+<li><p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cam_serial_num</span></code>: Stored serial number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtsp_url</span></code>: Stored RTSP URL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: Current frame from camera</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">running</span></code>: Boolean flag to control thread execution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_dict</span></code>: Reference to shared frame dictionary</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>: Sets up thread attributes but doesn’t start the thread</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">cam_thread</span> <span class="o">=</span> <span class="n">CameraThread</span><span class="p">(</span><span class="s2">&quot;CAM001&quot;</span><span class="p">,</span> <span class="s2">&quot;rtsp://192.168.1.100:554/stream&quot;</span><span class="p">,</span> <span class="n">frame_dict</span><span class="p">)</span>
+<span class="n">cam_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="run-self">
+<h5><code class="docutils literal notranslate"><span class="pre">run(self)</span></code><a class="headerlink" href="#run-self" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Main thread function that continuously captures frames</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Creates CamConnect instance with rtsp_url</p></li>
+<li><p>Continually reads frames while running flag is True</p></li>
+<li><p>Stores frames in the shared frame_dict with camera serial number as key</p></li>
+<li><p>Includes timestamp overlay on each frame</p></li>
+<li><p>Handles exceptions to prevent thread crashes</p></li>
+</ol>
+</li>
+<li><p><strong>Used By</strong>: Thread system when thread is started</p></li>
+<li><p><strong>Usage</strong>: Not called directly, invoked via thread.start()</p></li>
+</ul>
+</section>
+<section id="stop-self">
+<h5><code class="docutils literal notranslate"><span class="pre">stop(self)</span></code><a class="headerlink" href="#stop-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Stops the thread execution safely</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Sets running flag to False, which terminates the run loop</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cam_thread</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="n">cam_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  <span class="c1"># Wait for thread to finish</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="function-load-camera-config">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">load_camera_config()</span></code><a class="headerlink" href="#function-load-camera-config" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Loads camera configuration from file</p></li>
+<li><p><strong>Returns</strong>: Dictionary mapping camera serial numbers to RTSP URLs</p></li>
+<li><p><strong>File Source</strong>: ‘data/cameras.json’</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Opens and reads cameras.json file</p></li>
+<li><p>Parses JSON into dictionary</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>:</p>
+<ul class="simple">
+<li><p>Returns empty dictionary if file not found</p></li>
+<li><p>Logs error and returns empty dictionary for other exceptions</p></li>
+</ul>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cameras</span> <span class="o">=</span> <span class="n">load_camera_config</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">serial_num</span><span class="p">,</span> <span class="n">rtsp_url</span> <span class="ow">in</span> <span class="n">cameras</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">add_camera</span><span class="p">(</span><span class="n">serial_num</span><span class="p">,</span> <span class="n">rtsp_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="plc-py-plc-communication-module">
+<h3>plc.py (PLC Communication Module)<a class="headerlink" href="#plc-py-plc-communication-module" title="Link to this heading"></a></h3>
+<p>This module handles communication with the Programmable Logic Controller via Modbus ASCII protocol.</p>
+<section id="class-plc">
+<h4>Class: <code class="docutils literal notranslate"><span class="pre">PLC</span></code><a class="headerlink" href="#class-plc" title="Link to this heading"></a></h4>
+<section id="init-self">
+<h5><code class="docutils literal notranslate"><span class="pre">__init__(self)</span></code><a class="headerlink" href="#init-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Initializes PLC object and connects to the physical PLC</p></li>
+<li><p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">isPLCConnected</span></code>: Boolean indicating PLC connection status</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instrument</span></code>: MinimalModbus instrument object</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Sets initial connection status to False</p></li>
+<li><p>Attempts to connect to PLC by calling connectToPLC()</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs connection failures but doesn’t raise exceptions</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plc</span> <span class="o">=</span> <span class="n">PLC</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">plc</span><span class="o">.</span><span class="n">isPLCConnected</span><span class="p">:</span>
+    <span class="c1"># Perform PLC operations</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="convert-ma-to-percentage-self-ma">
+<h5><code class="docutils literal notranslate"><span class="pre">convert_ma_to_percentage(self,</span> <span class="pre">ma)</span></code><a class="headerlink" href="#convert-ma-to-percentage-self-ma" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Converts milliamp readings to percentage</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ma</span></code>: Current in milliamps (float)</p></li>
+</ul>
+</li>
+<li><p><strong>Returns</strong>: Percentage value (float)</p></li>
+<li><p><strong>Conversion</strong>: Maps range -12mA to 20mA → 0% to 100%</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Applies linear conversion formula</p></li>
+<li><p>Clamps result to 0-100 range</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">current_ma</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">percentage</span> <span class="o">=</span> <span class="n">plc</span><span class="o">.</span><span class="n">convert_ma_to_percentage</span><span class="p">(</span><span class="n">current_ma</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current: </span><span class="si">{</span><span class="n">current_ma</span><span class="si">}</span><span class="s2">mA, Percentage: </span><span class="si">{</span><span class="n">percentage</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>  <span class="c1"># Example: 4.0mA → 50%</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="connecttoplc-self">
+<h5><code class="docutils literal notranslate"><span class="pre">connectToPLC(self)</span></code><a class="headerlink" href="#connecttoplc-self" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Establishes connection to PLC via Modbus ASCII protocol</p></li>
+<li><p><strong>Returns</strong>: Boolean - True if connection successful, False otherwise</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Creates MinimalModbus instrument on COM7</p></li>
+<li><p>Configures communication parameters:</p>
+<ul class="simple">
+<li><p>Baud rate: 9600</p></li>
+<li><p>Byte size: 7 bits</p></li>
+<li><p>Parity: Even</p></li>
+<li><p>Stop bits: 1</p></li>
+<li><p>Mode: ASCII</p></li>
+</ul>
+</li>
+<li><p>Tests connection by reading a register</p></li>
+</ol>
+</li>
+<li><p><strong>Configuration</strong>:</p>
+<ul class="simple">
+<li><p>Serial port: COM7 (hardware-dependent)</p></li>
+<li><p>Slave address: 1</p></li>
+</ul>
+</li>
+<li><p><strong>Exception Handling</strong>: Catches and logs connection errors</p></li>
+<li><p><strong>Usage</strong>: Called automatically by <code class="docutils literal notranslate"><span class="pre">__init__</span></code> but can be called manually to reconnect</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">plc</span><span class="o">.</span><span class="n">isPLCConnected</span><span class="p">:</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="n">plc</span><span class="o">.</span><span class="n">connectToPLC</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PLC reconnected successfully&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="read-bit-self-address">
+<h5><code class="docutils literal notranslate"><span class="pre">read_bit(self,</span> <span class="pre">address)</span></code><a class="headerlink" href="#read-bit-self-address" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Reads a value from the specified PLC register</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>: Register address to read from (int)</p></li>
+</ul>
+</li>
+<li><p><strong>Returns</strong>: Value read from register or None if failed</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Checks if PLC is connected</p></li>
+<li><p>Uses MinimalModbus to read register value</p></li>
+<li><p>Returns value if successful</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>:</p>
+<ul class="simple">
+<li><p>Logs errors but doesn’t raise exceptions</p></li>
+<li><p>Attempts to reconnect on communication failure</p></li>
+</ul>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">plc</span><span class="o">.</span><span class="n">read_bit</span><span class="p">(</span><span class="mi">4106</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Register 4106 value: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="write-bit-self-address-data">
+<h5><code class="docutils literal notranslate"><span class="pre">write_bit(self,</span> <span class="pre">address,</span> <span class="pre">data)</span></code><a class="headerlink" href="#write-bit-self-address-data" title="Link to this heading"></a></h5>
+<ul>
+<li><p><strong>Purpose</strong>: Writes a value to the specified PLC register</p></li>
+<li><p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>: Register address to write to (int)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: Value to write to register (typically int)</p></li>
+</ul>
+</li>
+<li><p><strong>Returns</strong>: Boolean - True if write successful, False otherwise</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Checks if PLC is connected</p></li>
+<li><p>Uses MinimalModbus to write value to register</p></li>
+<li><p>Returns success status</p></li>
+</ol>
+</li>
+<li><p><strong>Exception Handling</strong>:</p>
+<ul class="simple">
+<li><p>Logs errors but doesn’t raise exceptions</p></li>
+<li><p>Attempts to reconnect on communication failure</p></li>
+</ul>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">success</span> <span class="o">=</span> <span class="n">plc</span><span class="o">.</span><span class="n">write_bit</span><span class="p">(</span><span class="mi">4106</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>  <span class="c1"># Signal vibration detected</span>
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Successfully wrote value to PLC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="database-py-database-operations">
+<h3>database.py (Database Operations)<a class="headerlink" href="#database-py-database-operations" title="Link to this heading"></a></h3>
+<p>This module handles database operations for storing vibration events.</p>
+<section id="function-create-db-if-not-exists">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">create_db_if_not_exists()</span></code><a class="headerlink" href="#function-create-db-if-not-exists" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Creates the database if it doesn’t exist</p></li>
+<li><p><strong>Returns</strong>: None</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Connects to PostgreSQL server using psycopg2</p></li>
+<li><p>Checks if database “deevia_vms” exists by querying pg_database</p></li>
+<li><p>If not exists, creates the database</p></li>
+<li><p>Closes connection</p></li>
+</ol>
+</li>
+<li><p><strong>Configuration</strong>:</p>
+<ul class="simple">
+<li><p>Host: localhost</p></li>
+<li><p>Port: 5432</p></li>
+<li><p>User: postgres</p></li>
+<li><p>Password: root</p></li>
+<li><p>Initial database: postgres (for connection)</p></li>
+<li><p>Target database: deevia_vms (to create)</p></li>
+</ul>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs errors but doesn’t raise exceptions</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create_db_if_not_exists</span><span class="p">()</span>  <span class="c1"># Ensures database exists before attempting operations</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="function-create-table-if-not-exists">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">create_table_if_not_exists()</span></code><a class="headerlink" href="#function-create-table-if-not-exists" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Creates the required table if it doesn’t exist</p></li>
+<li><p><strong>Returns</strong>: None</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Connects to the “deevia_vms” database</p></li>
+<li><p>Executes SQL CREATE TABLE IF NOT EXISTS statement</p></li>
+<li><p>Creates “vms” table with column for vibration stopped timestamp</p></li>
+<li><p>Closes connection</p></li>
+</ol>
+</li>
+<li><p><strong>Configuration</strong>:</p>
+<ul class="simple">
+<li><p>Table: vms</p></li>
+<li><p>Columns: id (serial), vibration_stopped_date_time (timestamp)</p></li>
+</ul>
+</li>
+<li><p><strong>Exception Handling</strong>: Logs errors but doesn’t raise exceptions</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create_table_if_not_exists</span><span class="p">()</span>  <span class="c1"># Call after database creation</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="function-store-vibration-stopped-time">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">store_vibration_stopped_time()</span></code><a class="headerlink" href="#function-store-vibration-stopped-time" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Records the timestamp when vibration stops</p></li>
+<li><p><strong>Returns</strong>: None</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Connects to the “deevia_vms” database</p></li>
+<li><p>Gets current timestamp</p></li>
+<li><p>Inserts timestamp into vms table</p></li>
+<li><p>Commits transaction and closes connection</p></li>
+</ol>
+</li>
+<li><p><strong>Database Impact</strong>: Creates a new record with current timestamp</p></li>
+<li><p><strong>Exception Handling</strong>: Logs errors but doesn’t raise exceptions</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># When vibration stops after being detected</span>
+<span class="n">store_vibration_stopped_time</span><span class="p">()</span>  <span class="c1"># Records the event time</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="logging-config-py-logging-configuration">
+<h3>logging_config.py (Logging Configuration)<a class="headerlink" href="#logging-config-py-logging-configuration" title="Link to this heading"></a></h3>
+<p>This module configures the application-wide logging system.</p>
+<section id="function-setup-logger">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">setup_logger()</span></code><a class="headerlink" href="#function-setup-logger" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Configures and returns a logger with file rotation</p></li>
+<li><p><strong>Returns</strong>: Configured logger object</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Creates logs directory if it doesn’t exist</p></li>
+<li><p>Creates a logger instance</p></li>
+<li><p>Sets log level to INFO</p></li>
+<li><p>Configures TimedRotatingFileHandler:</p>
+<ul class="simple">
+<li><p>Base filename: logs/VMS_{date}.log</p></li>
+<li><p>When: midnight (daily rotation)</p></li>
+<li><p>Backups: 1 (keeps one previous log file)</p></li>
+</ul>
+</li>
+<li><p>Sets formatter with timestamp, filename, thread name, and log level</p></li>
+<li><p>Adds handler to logger</p></li>
+</ol>
+</li>
+<li><p><strong>Log Format</strong>: <code class="docutils literal notranslate"><span class="pre">%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(threadName)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(message)s</span></code></p></li>
+<li><p><strong>Exception Handling</strong>: Creates fallback console logger if file setup fails</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">setup_logger</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Application started&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error occurred: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">error_message</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="variable-logger">
+<h4>Variable: <code class="docutils literal notranslate"><span class="pre">logger</span></code><a class="headerlink" href="#variable-logger" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Global logger instance for use throughout the application</p></li>
+<li><p><strong>Type</strong>: logging.Logger</p></li>
+<li><p><strong>Initialization</strong>: Created by calling setup_logger()</p></li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">logging_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Function called&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Potential issue: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">warning_message</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="file-verifier-py-file-verification">
+<h3>file_verifier.py (File Verification)<a class="headerlink" href="#file-verifier-py-file-verification" title="Link to this heading"></a></h3>
+<p>This module handles verification of required files and creation of necessary directories.</p>
+<section id="function-verify-config-files">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">verify_config_files()</span></code><a class="headerlink" href="#function-verify-config-files" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Checks for the existence of required configuration files</p></li>
+<li><p><strong>Returns</strong>: Boolean - True if all required files exist, False otherwise</p></li>
+<li><p><strong>Files Checked</strong>:</p>
+<ul class="simple">
+<li><p>data/cameras.json: Camera RTSP URLs</p></li>
+<li><p>data/roi.json: Region of interest settings</p></li>
+<li><p>data/config.json: System configuration</p></li>
+<li><p>data/storage_limit.json: Storage management settings</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Checks each file path using os.path.exists()</p></li>
+<li><p>Returns True only if all required files exist</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">verify_config_files</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing configuration files. Please check data directory.&quot;</span><span class="p">)</span>
+    <span class="c1"># Handle missing files situation</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="function-create-directories">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">create_directories()</span></code><a class="headerlink" href="#function-create-directories" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Creates necessary directories if they don’t exist</p></li>
+<li><p><strong>Returns</strong>: None</p></li>
+<li><p><strong>Directories Created</strong>:</p>
+<ul class="simple">
+<li><p>data: For configuration files</p></li>
+<li><p>logs: For application logs</p></li>
+<li><p>results/videos: For recorded video files</p></li>
+</ul>
+</li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Uses os.makedirs() with exist_ok=True to create directories</p></li>
+<li><p>Creates nested directory structure as needed</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create_directories</span><span class="p">()</span>  <span class="c1"># Call at application startup</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="function-check-and-create-files">
+<h4>Function: <code class="docutils literal notranslate"><span class="pre">check_and_create_files()</span></code><a class="headerlink" href="#function-check-and-create-files" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Purpose</strong>: Main function that combines verification and directory creation</p></li>
+<li><p><strong>Returns</strong>: Boolean - True if all checks pass, False otherwise</p></li>
+<li><p><strong>Process</strong>:</p>
+<ol class="simple">
+<li><p>Calls create_directories() to ensure directories exist</p></li>
+<li><p>Calls verify_config_files() to check for required files</p></li>
+<li><p>Returns result of verification</p></li>
+</ol>
+</li>
+<li><p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">success</span> <span class="o">=</span> <span class="n">check_and_create_files</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Configuration issue detected. Please check data files.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="configuration-files">
+<h2>Configuration Files<a class="headerlink" href="#configuration-files" title="Link to this heading"></a></h2>
+<p>The system relies on several JSON configuration files located in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory:</p>
+<section id="cameras-json">
+<h3>cameras.json<a class="headerlink" href="#cameras-json" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>Purpose</strong>: Defines camera connections with their serial numbers and RTSP URLs</p></li>
+<li><p><strong>Format</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;camera_serial_number_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rtsp://camera_ip_1:port/stream&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;camera_serial_number_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rtsp://camera_ip_2:port/stream&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Required Fields</strong>:</p>
+<ul class="simple">
+<li><p>Camera serial number (key): Unique identifier for each camera</p></li>
+<li><p>RTSP URL (value): Full RTSP stream URL including protocol, IP, port, and path</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CAM001&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rtsp://192.168.1.100:554/main/stream&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CAM002&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rtsp://192.168.1.101:554/main/stream&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="roi-json">
+<h3>roi.json<a class="headerlink" href="#roi-json" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>Purpose</strong>: Defines Region of Interest for vibration detection</p></li>
+<li><p><strong>Format</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Required Fields</strong>:</p>
+<ul class="simple">
+<li><p>x: X-coordinate of top-left corner (pixels)</p></li>
+<li><p>y: Y-coordinate of top-left corner (pixels)</p></li>
+<li><p>width: Width of ROI (pixels)</p></li>
+<li><p>height: Height of ROI (pixels)</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="config-json">
+<h3>config.json<a class="headerlink" href="#config-json" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>Purpose</strong>: General system configuration parameters</p></li>
+<li><p><strong>Format</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mes_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fps&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;video_duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;stable_threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;motion_blur&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">boolea</span><span class="kc">n</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Required Fields</strong>:</p>
+<ul class="simple">
+<li><p>mes_score: Motion energy score threshold (default: 50)</p></li>
+<li><p>fps: Frames per second for processing (default: 20)</p></li>
+<li><p>video_duration: Duration of recorded videos in seconds (default: 180)</p></li>
+<li><p>stable_threshold: Time in seconds before declaring stability (default: 5)</p></li>
+<li><p>motion_blur: Whether to use motion blur detection (default: true)</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mes_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;video_duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;stable_threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;motion_blur&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="storage-limit-json">
+<h3>storage_limit.json<a class="headerlink" href="#storage-limit-json" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>Purpose</strong>: Defines disk space limit for video recordings</p></li>
+<li><p><strong>Format</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;limit_gb&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">i</span><span class="kc">nte</span><span class="err">ger</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Required Fields</strong>:</p>
+<ul class="simple">
+<li><p>limit_gb: Storage limit in gigabytes (default: 30)</p></li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;limit_gb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p>This section provides guidance for troubleshooting common issues.</p>
+<section id="camera-connection-issues">
+<h3>Camera Connection Issues<a class="headerlink" href="#camera-connection-issues" title="Link to this heading"></a></h3>
+<section id="symptoms">
+<h4>Symptoms:<a class="headerlink" href="#symptoms" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Black screen or error message in camera feed</p></li>
+<li><p>“Camera disconnected” error in logs</p></li>
+</ul>
+</section>
+<section id="possible-causes">
+<h4>Possible Causes:<a class="headerlink" href="#possible-causes" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Incorrect RTSP URL in cameras.json</p></li>
+<li><p>Network connectivity issues</p></li>
+<li><p>Camera power or hardware failure</p></li>
+<li><p>Camera bandwidth limitations</p></li>
+</ul>
+</section>
+<section id="solutions">
+<h4>Solutions:<a class="headerlink" href="#solutions" title="Link to this heading"></a></h4>
+<ol class="simple">
+<li><p><strong>Verify RTSP URL</strong>:</p>
+<ul class="simple">
+<li><p>Check cameras.json for correct URLs</p></li>
+<li><p>Test URLs with VLC or similar player</p></li>
+<li><p>Ensure proper authentication is included if required</p></li>
+</ul>
+</li>
+<li><p><strong>Check Network Connectivity</strong>:</p>
+<ul class="simple">
+<li><p>Ping camera IP addresses</p></li>
+<li><p>Verify that cameras are on the same network as the monitoring system</p></li>
+<li><p>Check network switches and routers</p></li>
+</ul>
+</li>
+<li><p><strong>Camera Hardware Check</strong>:</p>
+<ul class="simple">
+<li><p>Verify power supply to cameras</p></li>
+<li><p>Check camera status LEDs</p></li>
+<li><p>Restart cameras if possible</p></li>
+</ul>
+</li>
+<li><p><strong>Bandwidth Considerations</strong>:</p>
+<ul class="simple">
+<li><p>Lower camera resolution or framerate if network is congested</p></li>
+<li><p>Ensure sufficient network capacity for all cameras</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="plc-communication-issues">
+<h3>PLC Communication Issues<a class="headerlink" href="#plc-communication-issues" title="Link to this heading"></a></h3>
+<section id="id1">
+<h4>Symptoms:<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>“PLC connection failed” error in logs</p></li>
+<li><p>System unable to signal vibration events</p></li>
+</ul>
+</section>
+<section id="id2">
+<h4>Possible Causes:<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Incorrect COM port configuration</p></li>
+<li><p>PLC not powered on or in fault state</p></li>
+<li><p>Serial cable disconnected or damaged</p></li>
+<li><p>PLC communication parameters mismatch</p></li>
+<li><p>Invalid PLC addresses used</p></li>
+</ul>
+</section>
+<section id="id3">
+<h4>Solutions:<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<ol class="simple">
+<li><p><strong>Verify COM Port Settings</strong>:</p>
+<ul class="simple">
+<li><p>Check that COM7 is the correct port (use Device Manager)</p></li>
+<li><p>Ensure no other software is using the same COM port</p></li>
+<li><p>Try changing the COM port in the <code class="docutils literal notranslate"><span class="pre">connectToPLC()</span></code> method if necessary</p></li>
+</ul>
+</li>
+<li><p><strong>Check PLC Configuration</strong>:</p>
+<ul class="simple">
+<li><p>Verify PLC is powered on and operational</p></li>
+<li><p>Check that Modbus ASCII protocol is enabled on the PLC</p></li>
+<li><p>Ensure communication parameters match (9600 baud, 7 data bits, even parity, 1 stop bit)</p></li>
+</ul>
+</li>
+<li><p><strong>Test Serial Connection</strong>:</p>
+<ul class="simple">
+<li><p>Inspect physical connections between PC and PLC</p></li>
+<li><p>Try a different serial cable</p></li>
+<li><p>Use a diagnostic tool like Modbus Poll to test the connection</p></li>
+</ul>
+</li>
+<li><p><strong>Address Verification</strong>:</p>
+<ul class="simple">
+<li><p>Confirm that register addresses (e.g., 4106) are correct for your PLC model</p></li>
+<li><p>Check PLC documentation for valid register ranges</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="database-issues">
+<h3>Database Issues<a class="headerlink" href="#database-issues" title="Link to this heading"></a></h3>
+<section id="id4">
+<h4>Symptoms:<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>“Failed to connect to database” error in logs</p></li>
+<li><p>Vibration events not being recorded</p></li>
+</ul>
+</section>
+<section id="id5">
+<h4>Possible Causes:<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>PostgreSQL service not running</p></li>
+<li><p>Incorrect database credentials</p></li>
+<li><p>Database structure issues</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4>Solutions:<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<ol>
+<li><p><strong>Check PostgreSQL Service</strong>:</p>
+<ul class="simple">
+<li><p>Verify PostgreSQL service is running (Services app in Windows)</p></li>
+<li><p>Restart service if necessary</p></li>
+</ul>
+</li>
+<li><p><strong>Verify Credentials</strong>:</p>
+<ul class="simple">
+<li><p>Ensure the username “postgres” and password “root” are set correctly</p></li>
+<li><p>Try connecting with pgAdmin or other PostgreSQL client</p></li>
+</ul>
+</li>
+<li><p><strong>Database Structure</strong>:</p>
+<ul>
+<li><p>Run the application with clean database to allow auto-creation</p></li>
+<li><p>If issues persist, manually create database and table:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">deevia_vms</span><span class="p">;</span>
+<span class="err">\</span><span class="k">c</span><span class="w"> </span><span class="n">deevia_vms</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">vms</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vibration_stopped_date_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="video-recording-issues">
+<h3>Video Recording Issues<a class="headerlink" href="#video-recording-issues" title="Link to this heading"></a></h3>
+<section id="id7">
+<h4>Symptoms:<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Videos not being saved</p></li>
+<li><p>“Low disk space” warnings</p></li>
+<li><p>Poor video quality</p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>Possible Causes:<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Insufficient disk space</p></li>
+<li><p>File permission issues</p></li>
+<li><p>OpenCV codec issues</p></li>
+</ul>
+</section>
+<section id="id9">
+<h4>Solutions:<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<ol class="simple">
+<li><p><strong>Disk Space Management</strong>:</p>
+<ul class="simple">
+<li><p>Check available disk space</p></li>
+<li><p>Adjust storage_limit.json to a lower value</p></li>
+<li><p>Manually clear old videos if necessary</p></li>
+</ul>
+</li>
+<li><p><strong>File Permissions</strong>:</p>
+<ul class="simple">
+<li><p>Ensure the application has write permissions to the results directory</p></li>
+<li><p>Run the application as administrator if needed</p></li>
+</ul>
+</li>
+<li><p><strong>Codec Issues</strong>:</p>
+<ul class="simple">
+<li><p>Install the required codecs (XVID) for OpenCV</p></li>
+<li><p>Try changing the codec in create_video_writer method if issues persist</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="maintenance">
+<h2>Maintenance<a class="headerlink" href="#maintenance" title="Link to this heading"></a></h2>
+<p>This section provides guidelines for regular maintenance tasks to ensure the system runs optimally.</p>
+<section id="regular-maintenance-tasks">
+<h3>Regular Maintenance Tasks<a class="headerlink" href="#regular-maintenance-tasks" title="Link to this heading"></a></h3>
+<section id="daily">
+<h4>Daily<a class="headerlink" href="#daily" title="Link to this heading"></a></h4>
+<ol class="simple">
+<li><p><strong>Log Review</strong>:</p>
+<ul class="simple">
+<li><p>Check log files in the logs directory for any errors or warnings</p></li>
+<li><p>Look for patterns of connection failures or system issues</p></li>
+</ul>
+</li>
+<li><p><strong>System Monitor</strong>:</p>
+<ul class="simple">
+<li><p>Verify the application is running and detecting vibrations correctly</p></li>
+<li><p>Ensure all cameras are connected and streaming</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="weekly">
+<h4>Weekly<a class="headerlink" href="#weekly" title="Link to this heading"></a></h4>
+<ol>
+<li><p><strong>Disk Space Management</strong>:</p>
+<ul class="simple">
+<li><p>Review disk usage and available space</p></li>
+<li><p>Archive or delete old video recordings if necessary</p></li>
+<li><p>Adjust storage_limit.json if needed</p></li>
+</ul>
+</li>
+<li><p><strong>Camera Verification</strong>:</p>
+<ul class="simple">
+<li><p>Verify camera positioning has not changed</p></li>
+<li><p>Clean camera lenses if accessible</p></li>
+<li><p>Check video quality and adjust ROI if necessary</p></li>
+</ul>
+</li>
+<li><p><strong>Database Maintenance</strong>:</p>
+<ul>
+<li><p>Backup the PostgreSQL database</p></li>
+<li><p>Run VACUUM command to optimize database performance:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">VACUUM</span><span class="w"> </span><span class="k">ANALYZE</span><span class="w"> </span><span class="n">deevia_vms</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="monthly">
+<h4>Monthly<a class="headerlink" href="#monthly" title="Link to this heading"></a></h4>
+<ol class="simple">
+<li><p><strong>System Restart</strong>:</p>
+<ul class="simple">
+<li><p>Perform a controlled restart of the system</p></li>
+<li><p>Update PostgreSQL if new security patches are available</p></li>
+</ul>
+</li>
+<li><p><strong>Configuration Review</strong>:</p>
+<ul class="simple">
+<li><p>Review and adjust system parameters based on performance</p></li>
+<li><p>Check mes_score threshold and adjust if vibration detection is too sensitive or not sensitive enough</p></li>
+<li><p>Update ROI settings if blast furnace conditions have changed</p></li>
+</ul>
+</li>
+<li><p><strong>PLC Connection Test</strong>:</p>
+<ul class="simple">
+<li><p>Verify PLC communication is functioning correctly</p></li>
+<li><p>Test the full signal chain from vibration detection to PLC notification</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="system-upgrade-procedures">
+<h3>System Upgrade Procedures<a class="headerlink" href="#system-upgrade-procedures" title="Link to this heading"></a></h3>
+<ol>
+<li><p><strong>Before Upgrading</strong>:</p>
+<ul class="simple">
+<li><p>Backup all configuration files from the data directory</p></li>
+<li><p>Backup the PostgreSQL database</p></li>
+<li><p>Document current performance and settings</p></li>
+</ul>
+</li>
+<li><p><strong>Software Update Process</strong>:</p>
+<ul>
+<li><p>Stop the running application</p></li>
+<li><p>Create a backup of the entire application directory</p></li>
+<li><p>Replace files with new versions</p></li>
+<li><p>Update requirements if needed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>call<span class="w"> </span>activate<span class="w"> </span>vms
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>After Upgrade</strong>:</p>
+<ul class="simple">
+<li><p>Restore configuration files if they were overwritten</p></li>
+<li><p>Run the application and verify all components are working</p></li>
+<li><p>Compare performance metrics with pre-upgrade documentation</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<section id="technical-references">
+<h3>Technical References<a class="headerlink" href="#technical-references" title="Link to this heading"></a></h3>
+<ol class="simple">
+<li><p><strong>Python Libraries</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.opencv.org/4.x/">OpenCV Documentation</a></p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/">NumPy Documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.psycopg.org/docs/">Psycopg2 Documentation</a></p></li>
+<li><p><a class="reference external" href="https://minimalmodbus.readthedocs.io/">MinimalModbus Documentation</a></p></li>
+</ul>
+</li>
+<li><p><strong>Protocols</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://modbus.org/specs.php">Modbus Protocol Specification</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7826">RTSP Protocol Documentation</a></p></li>
+</ul>
+</li>
+<li><p><strong>Database</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.postgresql.org/docs/">PostgreSQL Documentation</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="internal-references">
+<h3>Internal References<a class="headerlink" href="#internal-references" title="Link to this heading"></a></h3>
+<ol class="simple">
+<li><p><strong>System Design Documents</strong>:</p>
+<ul class="simple">
+<li><p>Monitoring System Requirements Specification</p></li>
+<li><p>Vibration Detection Algorithm Design Document</p></li>
+</ul>
+</li>
+<li><p><strong>Equipment Manuals</strong>:</p>
+<ul class="simple">
+<li><p>Camera System Installation and Operation Manual</p></li>
+<li><p>PLC Programming and Communication Guide</p></li>
+</ul>
+</li>
+<li><p><strong>Contact Information</strong>:</p>
+<ul class="simple">
+<li><p>Technical Support: support&#64;example.com</p></li>
+<li><p>System Administrator: admin&#64;example.com</p></li>
+<li><p>Emergency Contact: emergency&#64;example.com, +91-1234567890</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Document Version</strong>: 1.0<br /><strong>Last Updated</strong>: December 7, 2024<br /><strong>Author</strong>: Subramanya Gopal Bellary | Software Engineer | DEEVIA Software India Pvt Ltd</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="maintenance.html" class="btn btn-neutral float-left" title="Maintenance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Deevia Software India Pvt Ltd.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

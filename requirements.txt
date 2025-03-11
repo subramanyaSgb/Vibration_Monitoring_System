@@ -1,0 +1,8 @@
+opencv-python
+psycopg2
+customtkinter
+icecream
+pillow
+cx_Freeze
+minimalmodbus
+pyserial
