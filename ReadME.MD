@@ -1240,8 +1240,6 @@ This section provides guidelines for regular maintenance tasks to ensure the sys
    - Camera System Installation and Operation Manual
    - PLC Programming and Communication Guide
 
-3. **Contact Information**:
-   - Technical Support: subramanya.b@deevia.pw
 ---
 
 **Document Version**: 1.0  
