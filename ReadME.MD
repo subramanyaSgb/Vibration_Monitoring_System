@@ -1241,10 +1241,7 @@ This section provides guidelines for regular maintenance tasks to ensure the sys
    - PLC Programming and Communication Guide
 
 3. **Contact Information**:
-   - Technical Support: support@example.com
-   - System Administrator: admin@example.com
-   - Emergency Contact: emergency@example.com, +91-1234567890
-
+   - Technical Support: subramanya.b@deevia.pw
 ---
 
 **Document Version**: 1.0  
